@@ -1,21 +1,60 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>レイドでつなぐ生誕祭</title>
 
-<meta charset="UTF-8">
-
-<title>レイドでつなぐ生誕祭</title>
-
-<link rel="stylesheet" href="css/style.css">
-
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-<h1>レイドでつなぐ生誕祭</h1>
+<div class="container">
+
+    <h1>🎂 レイドでつなぐ生誕祭</h1>
+
+    <div class="card">
+
+        <div class="live">
+            🔴 LIVE
+        </div>
+
+        <h2 id="currentName">
+            読み込み中...
+        </h2>
+
+        <div id="playerArea">
+
+            Twitch Player
+
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <h3>次の配信者</h3>
+
+        <div id="nextName">
+            未定
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <h3>進行状況</h3>
+
+        <div id="progress">
+            1 / 1
+        </div>
+
+    </div>
+
+</div>
 
 <script src="js/script.js"></script>
 
 </body>
-
 </html>
