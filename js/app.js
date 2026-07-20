@@ -1,10 +1,22 @@
-async function startApp(){
+async function startApp() {
 
-    const data = await loadCurrent();
+    console.log("アプリ起動");
 
-    updateUI(data);
+    try {
 
-    createPlayer(data.channel);
+        const data = await loadCurrent();
+
+        console.log(data);
+
+        updateUI(data);
+
+        createPlayer(data.channel);
+
+    } catch(error) {
+
+        console.error(error);
+
+    }
 
 }
 
