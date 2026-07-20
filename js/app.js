@@ -26,7 +26,15 @@ async function refresh() {
 
 }
 
-let currentChannel = "";
+if (currentChannel !== data.channel) {
+
+    console.log(`チャンネル変更: ${currentChannel} → ${data.channel}`);
+
+    currentChannel = data.channel;
+
+    createPlayer(currentChannel);
+
+}
 
 async function refresh() {
 
