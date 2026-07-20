@@ -6,50 +6,13 @@ async function refresh() {
 
         const data = await loadCurrent();
 
-        updateUI(data);
-
-        if (currentChannel !== data.channel) {
-
-            currentChannel = data.channel;
-
-            createPlayer(currentChannel);
-
-            console.log("チャンネル変更:", currentChannel);
-
-        }
-
-    } catch (error) {
-
-        console.error(error);
-
-    }
-
-}
-
-if (currentChannel !== data.channel) {
-
-    console.log(`チャンネル変更: ${currentChannel} → ${data.channel}`);
-
-    currentChannel = data.channel;
-
-    createPlayer(currentChannel);
-
-}
-
-async function refresh() {
-
-    try {
-
-        const data = await loadCurrent();
-
         console.log("取得データ:", data);
 
         updateUI(data);
 
         if (currentChannel !== data.channel) {
 
-            console.log("チャンネル変更");
-            console.log(currentChannel, "→", data.channel);
+            console.log(`チャンネル変更: ${currentChannel} → ${data.channel}`);
 
             currentChannel = data.channel;
 
