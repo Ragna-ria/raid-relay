@@ -1,18 +1,24 @@
-async function startApp() {
+let currentChannel = "";
 
-    console.log("アプリ起動");
+async function refresh() {
 
     try {
 
         const data = await loadCurrent();
 
-        console.log(data);
-
         updateUI(data);
 
-        createPlayer(data.channel);
+        if (currentChannel !== data.channel) {
 
-    } catch(error) {
+            currentChannel = data.channel;
+
+            createPlayer(currentChannel);
+
+            console.log("チャンネル変更:", currentChannel);
+
+        }
+
+    } catch (error) {
 
         console.error(error);
 
@@ -20,4 +26,6 @@ async function startApp() {
 
 }
 
-startApp();
+refresh();
+
+setInterval(refresh, 5000);
