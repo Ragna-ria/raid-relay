@@ -1,16 +1,19 @@
-function createPlayer(channel){
+let player = null;
 
-    document.getElementById("playerArea").innerHTML =
+function createPlayer(channel) {
 
-    `<div style="
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        width:100%;
-        height:100%;
-        font-size:28px;
-    ">
-        Twitch Player<br>${channel}
-    </div>`;
+    if (player) {
+        player.setChannel(channel);
+        return;
+    }
+
+    player = new Twitch.Player("playerArea", {
+        width: "100%",
+        height: 420,
+        channel: channel,
+        parent: [
+            "ragna-ria.github.io"
+        ]
+    });
 
 }
