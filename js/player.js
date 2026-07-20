@@ -4,9 +4,11 @@ function createPlayer(channel) {
 
     const playerArea = document.getElementById("playerArea");
 
-    playerArea.innerHTML = "";
+    // プレイヤーを一旦削除
+    playerArea.innerHTML = '<div id="twitch-player"></div>';
 
-    player = new Twitch.Player("playerArea", {
+    // 新しく生成
+    player = new Twitch.Player("twitch-player", {
         width: "100%",
         height: 420,
         channel: channel,
