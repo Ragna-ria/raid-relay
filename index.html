@@ -2,51 +2,75 @@
 <html lang="ja">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>レイドでつなぐ生誕祭</title>
 
     <link rel="stylesheet" href="css/style.css">
+
 </head>
 
 <body>
 
     <div class="container">
 
-        <h1>🎂 レイドでつなぐ生誕祭</h1>
+        <header>
 
-        <div class="card">
+            <h1>🎂 レイドでつなぐ生誕祭</h1>
 
             <div class="live">
                 🔴 LIVE
             </div>
 
-            <div class="current-runner">
+        </header>
+
+        <main>
+
+            <section class="runner-card">
+
                 <h2>
-                    現在の走者：
-                    <span id="currentName">読み込み中...</span>
+                    現在の走者
                 </h2>
-            </div>
 
-            <div id="playerArea"></div>
+                <div id="currentName" class="runner-name">
+                    読み込み中...
+                </div>
 
-        </div>
+            </section>
 
-        <div class="card">
+            <section class="player-card">
 
-            <div class="next-runner">
+                <div id="playerArea"></div>
+
+            </section>
+
+            <section class="next-card">
+
                 <h3>
-                    次の走者：
-                    <span id="nextName">未定</span>
+                    次の走者
                 </h3>
-            </div>
 
-            <div class="progress">
-                <span id="progressText"></span>
-            </div>
+                <div id="nextName" class="next-name">
+                    未定
+                </div>
 
-        </div>
+            </section>
+
+            <section class="progress-card">
+
+                <h3>
+                    進行状況
+                </h3>
+
+                <div id="progressText">
+                    -
+                </div>
+
+            </section>
+
+        </main>
 
     </div>
 
