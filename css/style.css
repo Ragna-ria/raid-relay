@@ -1,81 +1,155 @@
-body{
+/* =========================
+   全体
+========================= */
 
-    margin:0;
-    padding:30px;
-
-    background:transparent;
-
-    font-family:
-    "Hiragino Sans",
-    "Yu Gothic",
-    sans-serif;
-
+body {
+    margin: 0;
+    padding: 30px;
+    background: #f4fcff;
+    font-family: "Noto Sans JP", sans-serif;
+    color: #2c3e50;
 }
 
-.container{
-
-    max-width:1000px;
-
-    margin:auto;
-
+.container {
+    max-width: 900px;
+    margin: auto;
+    background: #ffffff;
+    border: 3px solid #69e0ff;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 20px rgba(105, 224, 255, 0.2);
 }
 
-h1{
+/* =========================
+   タイトル
+========================= */
 
-    text-align:center;
-
-    color:#0087d7;
-
+h1 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    text-align: center;
+    color: #00a8d8;
+    font-size: 42px;
 }
 
-.card{
+/* =========================
+   LIVE
+========================= */
 
-    background:white;
-
-    border-radius:20px;
-
-    padding:20px;
-
-    margin-top:20px;
-
-    box-shadow:0 5px 15px rgba(0,0,0,.15);
-
+.live {
+    text-align: center;
+    color: #ff3b30;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
 
-.live{
+/* =========================
+   現在の走者
+========================= */
 
-    color:red;
-
-    font-size:22px;
-
-    font-weight:bold;
-
+.current-runner {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-#currentName{
-
-    text-align:center;
-
-    color:#0087d7;
-
+.current-runner h2 {
+    margin: 0;
+    font-size: 26px;
+    font-weight: normal;
 }
 
-#playerArea{
+#currentName {
+    color: #69e0ff;
+    font-size: 42px;
+    font-weight: bold;
+}
 
-    margin-top:20px;
+/* =========================
+   Twitch Player
+========================= */
 
-    background:#dff4ff;
+#playerArea {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto 25px;
+    border: 4px solid #69e0ff;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #000;
+}
 
-    border-radius:15px;
+/* =========================
+   次の走者
+========================= */
 
-    height:500px;
+.next-runner {
+    text-align: center;
+}
 
-    display:flex;
+.next-runner h3 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: normal;
+}
 
-    align-items:center;
+#nextName {
+    color: #46d3ff;
+    font-size: 32px;
+    font-weight: bold;
+}
 
-    justify-content:center;
+/* =========================
+   進行状況
+========================= */
 
-    font-size:30px;
+.progress {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #00a8d8;
+}
 
+/* =========================
+   スマホ対応
+========================= */
+
+@media (max-width: 768px) {
+
+    body {
+        padding: 15px;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    .live {
+        font-size: 24px;
+    }
+
+    .current-runner h2 {
+        font-size: 20px;
+    }
+
+    #currentName {
+        font-size: 32px;
+    }
+
+    .next-runner h3 {
+        font-size: 20px;
+    }
+
+    #nextName {
+        font-size: 26px;
+    }
+
+    .progress {
+        font-size: 20px;
+    }
 }
