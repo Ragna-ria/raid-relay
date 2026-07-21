@@ -1,3 +1,11 @@
+/*
+=====================================
+レイドでつなぐ生誕祭
+Version 1.0
+Theme Color : #69e0ff
+=====================================
+*/
+
 /* ===========================
    全体
 =========================== */
@@ -42,43 +50,85 @@ body {
    LIVE
 =========================== */
 
-.live{
+.live {
 
-    display:flex;
+    display: flex;
 
-    align-items:center;
+    align-items: center;
 
-    gap:8px;
+    gap: 8px;
 
-    color:#e40000;
+    color: #e40000;
 
-    font-size:24px;
+    font-size: 24px;
 
-    font-weight:900;
+    font-weight: 900;
 
-    margin-bottom:12px;
-
-}
-
-.live-dot{
-
-    animation:blink 1s infinite;
+    margin-bottom: 12px;
 
 }
 
-@keyframes blink{
+.live-dot {
 
-    0%,100%{
+    animation: blink 1s infinite;
 
-        opacity:1;
+}
+
+@keyframes blink {
+
+    0%,100% {
+
+        opacity: 1;
 
     }
 
-    50%{
+    50% {
 
-        opacity:.2;
+        opacity: .2;
 
     }
+
+}
+
+/* ===========================
+   NOW STREAMING
+=========================== */
+
+.current {
+
+    display: flex;
+
+    align-items: baseline;
+
+    gap: 14px;
+
+    margin-bottom: 20px;
+
+}
+
+.current .label {
+
+    color: #69e0ff;
+
+    font-size: 26px;
+
+    font-weight: 900;
+
+    white-space: nowrap;
+
+    flex-shrink: 0;
+
+}
+
+.current-name {
+
+    color: #0b56d8;
+
+    font-size: 32px;
+
+    font-weight: 900;
+
+    white-space: nowrap;
 
 }
 
@@ -92,13 +142,13 @@ body {
 
     aspect-ratio: 16 / 9;
 
+    background: #000;
+
     border: 5px solid #69e0ff;
 
     border-radius: 18px;
 
     overflow: hidden;
-
-    background: #000;
 
 }
 
@@ -116,43 +166,51 @@ body {
 
     height: 100%;
 
-    border: none;
-
     display: block;
 
-}
-
-.next{
-
-    display:flex;
-
-    justify-content:flex-end;
-
-    align-items:baseline;
-
-    gap:14px;
-
-    margin-top:18px;
+    border: none;
 
 }
 
-.next .label{
+/* ===========================
+   NEXT
+=========================== */
 
-    color:#69e0ff;
+.next {
 
-    font-size:22px;
+    display: flex;
 
-    font-weight:900;
+    justify-content: flex-end;
+
+    align-items: baseline;
+
+    gap: 14px;
+
+    margin-top: 18px;
 
 }
 
-.next-name{
+.next .label {
 
-    color:#0b56d8;
+    color: #69e0ff;
 
-    font-size:24px;
+    font-size: 22px;
 
-    font-weight:900;
+    font-weight: 900;
+
+    white-space: nowrap;
+
+}
+
+.next-name {
+
+    color: #0b56d8;
+
+    font-size: 24px;
+
+    font-weight: 900;
+
+    white-space: nowrap;
 
 }
 
@@ -173,7 +231,7 @@ body {
 }
 
 /* ===========================
-   スマホ
+   スマホ対応
 =========================== */
 
 @media (max-width: 768px) {
@@ -215,12 +273,6 @@ body {
     .current-name {
 
         font-size: 26px;
-
-    }
-
-    #playerArea {
-
-        width: 100%;
 
     }
 
