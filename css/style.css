@@ -42,57 +42,81 @@ body {
    LIVE
 =========================== */
 
-.live {
+.live{
 
-    color: #e40000;
+    display:flex;
 
-    font-size: 24px;
+    align-items:center;
 
-    font-weight: 900;
+    gap:8px;
 
-    margin-bottom: 25px;
+    color:#e40000;
 
-}
+    font-size:24px;
 
-/* ===========================
-   NOW STREAMING
-=========================== */
+    font-weight:900;
 
-.current {
-
-    display: flex;
-
-    align-items: baseline;
-
-    gap: 16px;
-
-    margin-bottom: 25px;
+    margin-bottom:12px;
 
 }
 
-.current .label {
+.live-dot{
 
-    color: #0b56d8;
-
-    font-size: 26px;
-
-    font-weight: 900;
-
-    white-space: nowrap;
-
-    flex-shrink: 0;
+    animation:blink 1s infinite;
 
 }
 
-.current-name {
+@keyframes blink{
 
-    color: #69e0ff;
+    0%,100%{
 
-    font-size: 32px;
+        opacity:1;
 
-    font-weight: 900;
+    }
 
-    white-space: nowrap;
+    50%{
+
+        opacity:.2;
+
+    }
+
+}
+
+.current{
+
+    display:flex;
+
+    align-items:baseline;
+
+    gap:14px;
+
+    margin-bottom:20px;
+
+}
+
+.current .label{
+
+    color:#69e0ff;
+
+    font-size:26px;
+
+    font-weight:900;
+
+    white-space:nowrap;
+
+    flex-shrink:0;
+
+}
+
+.current-name{
+
+    color:#0b56d8;
+
+    font-size:32px;
+
+    font-weight:900;
+
+    white-space:nowrap;
 
 }
 
@@ -136,45 +160,37 @@ body {
 
 }
 
-/* ===========================
-   NEXT
-=========================== */
+.next{
 
-.next {
+    display:flex;
 
-    display: flex;
+    justify-content:flex-end;
 
-    justify-content: flex-end;
+    align-items:baseline;
 
-    align-items: baseline;
+    gap:14px;
 
-    gap: 14px;
-
-    margin-top: 22px;
+    margin-top:18px;
 
 }
 
-.next .label {
+.next .label{
 
-    color: #0b56d8;
+    color:#69e0ff;
 
-    font-size: 22px;
+    font-size:22px;
 
-    font-weight: 900;
-
-    white-space: nowrap;
+    font-weight:900;
 
 }
 
-.next-name {
+.next-name{
 
-    color: #69e0ff;
+    color:#0b56d8;
 
-    font-size: 24px;
+    font-size:24px;
 
-    font-weight: 900;
-
-    white-space: nowrap;
+    font-weight:900;
 
 }
 
