@@ -1,3 +1,7 @@
+/* ===========================
+   全体
+=========================== */
+
 body{
 
     margin:0;
@@ -16,7 +20,9 @@ body{
 
 }
 
-/* タイトル */
+/* ===========================
+   タイトル
+=========================== */
 
 .title{
 
@@ -24,21 +30,23 @@ body{
 
     color:#0b84d8;
 
-    font-size:64px;
+    font-size:50px;
 
     font-weight:900;
 
-    margin-bottom:40px;
+    margin:0 0 35px;
 
 }
 
-/* LIVE */
+/* ===========================
+   LIVE
+=========================== */
 
 .live{
 
     color:#e40000;
 
-    font-size:42px;
+    font-size:30px;
 
     font-weight:900;
 
@@ -46,7 +54,9 @@ body{
 
 }
 
-/* 現在 */
+/* ===========================
+   NOW STREAMING
+=========================== */
 
 .current{
 
@@ -64,7 +74,7 @@ body{
 
     color:#0b56d8;
 
-    font-size:42px;
+    font-size:40px;
 
     font-weight:900;
 
@@ -74,13 +84,15 @@ body{
 
     color:#69e0ff;
 
-    font-size:62px;
+    font-size:40px;
 
     font-weight:900;
 
 }
 
-/* Twitch */
+/* ===========================
+   Twitch Player
+=========================== */
 
 #playerArea{
 
@@ -96,13 +108,31 @@ body{
 
     background:#69e0ff;
 
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
 }
 
-/* NEXT */
+/* Twitchのiframe */
+
+#playerArea iframe{
+
+    width:100%;
+
+    height:100%;
+
+    display:block;
+
+}
+
+/* ===========================
+   NEXT
+=========================== */
 
 .next{
-
-    margin-top:30px;
 
     display:flex;
 
@@ -110,7 +140,9 @@ body{
 
     align-items:center;
 
-    gap:18px;
+    gap:16px;
+
+    margin-top:25px;
 
 }
 
@@ -118,7 +150,7 @@ body{
 
     color:#0b56d8;
 
-    font-size:42px;
+    font-size:30px;
 
     font-weight:900;
 
@@ -128,22 +160,96 @@ body{
 
     color:#69e0ff;
 
-    font-size:54px;
+    font-size:30px;
 
     font-weight:900;
 
 }
 
-/* Progress */
+/* ===========================
+   Progress
+=========================== */
 
 .progress{
 
-    margin-top:12px;
-
     text-align:right;
 
-    color:#999;
+    margin-top:12px;
+
+    color:#888;
 
     font-size:18px;
+
+}
+
+/* ===========================
+   スマホ
+=========================== */
+
+@media (max-width:900px){
+
+    .container{
+
+        width:95%;
+
+    }
+
+    .title{
+
+        font-size:36px;
+
+    }
+
+    .live{
+
+        font-size:24px;
+
+    }
+
+    .current{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:8px;
+
+    }
+
+    .current .label{
+
+        font-size:28px;
+
+    }
+
+    .current-name{
+
+        font-size:34px;
+
+    }
+
+    #playerArea{
+
+        height:300px;
+
+    }
+
+    .next{
+
+        justify-content:flex-start;
+
+    }
+
+    .next .label{
+
+        font-size:24px;
+
+    }
+
+    .next-name{
+
+        font-size:24px;
+
+    }
 
 }
