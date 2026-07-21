@@ -1,29 +1,62 @@
-<div class="container">
+<!DOCTYPE html>
+<html lang="ja">
 
-    <h1>レイドでつなぐ生誕祭</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <div class="live">
-        🔴 LIVE
+    <title>レイドでつなぐ生誕祭</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>🎂 レイドでつなぐ生誕祭</h1>
+
+        <div class="card">
+
+            <div class="live">
+                🔴 LIVE
+            </div>
+
+            <div class="current-runner">
+                <h2>
+                    現在の走者：
+                    <span id="currentName">読み込み中...</span>
+                </h2>
+            </div>
+
+            <div id="playerArea"></div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="next-runner">
+                <h3>
+                    次の走者：
+                    <span id="nextName">未定</span>
+                </h3>
+            </div>
+
+            <div class="progress">
+                <span id="progressText"></span>
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="current-runner">
-        <h2>
-            現在の走者：
-            <span id="currentName">読み込み中...</span>
-        </h2>
-    </div>
+    <script src="https://player.twitch.tv/js/embed/v1.js"></script>
 
-    <div id="playerArea"></div>
+    <script src="js/data.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/app.js"></script>
 
-    <div class="next-runner">
-        <h3>
-            次の走者：
-            <span id="nextName">未定</span>
-        </h3>
-    </div>
+</body>
 
-    <div class="progress">
-        <span id="progressText"></span>
-    </div>
-
-</div>
+</html>
