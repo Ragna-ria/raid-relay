@@ -1,117 +1,92 @@
-/* =====================================
-   全体
-===================================== */
-
 body{
+
     margin:0;
-    background:#ffffff;
+
+    background:#f4fcff;
+
     font-family:"Noto Sans JP",sans-serif;
-    color:#008bd7;
+
 }
 
 .container{
 
-    width:min(1000px,92%);
+    width:900px;
+
     margin:40px auto;
 
 }
 
+/* タイトル */
 
-/* =====================================
-   タイトル
-===================================== */
-
-header{
+.title{
 
     text-align:center;
-    margin-bottom:25px;
 
-}
+    color:#0b84d8;
 
-h1{
+    font-size:64px;
 
-    margin:0;
-    font-size:56px;
     font-weight:900;
-    color:#008bd7;
+
+    margin-bottom:40px;
 
 }
 
-
-/* =====================================
-   LIVE
-===================================== */
+/* LIVE */
 
 .live{
 
-    margin-top:28px;
+    color:#e40000;
 
-    font-size:34px;
+    font-size:42px;
+
     font-weight:900;
 
-    color:#ff2020;
-
-    animation:blink 1.2s infinite;
+    margin-bottom:30px;
 
 }
 
-@keyframes blink{
+/* 現在 */
 
-    0%{opacity:1;}
-    50%{opacity:.35;}
-    100%{opacity:1;}
-
-}
-
-
-/* =====================================
-   現在の走者
-===================================== */
-
-.runner-card{
+.current{
 
     display:flex;
-    align-items:baseline;
-    gap:28px;
 
-    margin-top:35px;
-    margin-bottom:25px;
+    align-items:center;
 
-}
+    gap:18px;
 
-.runner-card h2{
-
-    margin:0;
-
-    font-size:52px;
-    color:#008bd7;
+    margin-bottom:30px;
 
 }
 
-.runner-name{
+.current .label{
 
-    font-size:64px;
+    color:#0b56d8;
+
+    font-size:42px;
+
     font-weight:900;
+
+}
+
+.current-name{
 
     color:#69e0ff;
 
-}
+    font-size:62px;
 
-
-/* =====================================
-   Twitch Player
-===================================== */
-
-.player-card{
-
-    margin:0 auto;
+    font-weight:900;
 
 }
+
+/* Twitch */
 
 #playerArea{
 
     width:100%;
-    aspect-ratio:16 / 9;
+
+    height:506px;
 
     border:5px solid #69e0ff;
 
@@ -123,12 +98,9 @@ h1{
 
 }
 
+/* NEXT */
 
-/* =====================================
-   下部
-===================================== */
-
-.bottom{
+.next{
 
     margin-top:30px;
 
@@ -136,106 +108,42 @@ h1{
 
     justify-content:flex-end;
 
-}
+    align-items:center;
 
-.next-card{
-
-    display:flex;
-
-    gap:20px;
-
-    align-items:baseline;
+    gap:18px;
 
 }
 
-.next-card h3{
+.next .label{
 
-    margin:0;
+    color:#0b56d8;
 
     font-size:42px;
 
-    color:#008bd7;
+    font-weight:900;
 
 }
 
 .next-name{
 
-    font-size:52px;
+    color:#69e0ff;
+
+    font-size:54px;
 
     font-weight:900;
 
-    color:#008bd7;
-
 }
 
+/* Progress */
 
-/* =====================================
-   進行状況
-===================================== */
+.progress{
 
-.progress-card{
+    margin-top:12px;
 
-    display:none;
+    text-align:right;
 
-}
+    color:#999;
 
-
-/* =====================================
-   スマホ
-===================================== */
-
-@media(max-width:768px){
-
-    h1{
-
-        font-size:36px;
-
-    }
-
-    .live{
-
-        font-size:24px;
-
-    }
-
-    .runner-card{
-
-        flex-direction:column;
-        gap:8px;
-
-    }
-
-    .runner-card h2{
-
-        font-size:28px;
-
-    }
-
-    .runner-name{
-
-        font-size:42px;
-
-    }
-
-    .next-card{
-
-        flex-direction:column;
-        gap:5px;
-
-        align-items:flex-end;
-
-    }
-
-    .next-card h3{
-
-        font-size:24px;
-
-    }
-
-    .next-name{
-
-        font-size:32px;
-
-    }
+    font-size:18px;
 
 }
