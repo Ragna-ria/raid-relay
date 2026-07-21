@@ -2,25 +2,32 @@ let player = null;
 
 function createPlayer(channel) {
 
-    // channel が空なら何もしない
+    // チャンネル名が空なら終了
     if (!channel) {
         console.error("チャンネル名が指定されていません。");
         return;
     }
 
-    // プレイヤーエリア取得
+    // プレイヤーエリア
     const playerArea = document.getElementById("playerArea");
 
-    // プレイヤーを作り直す
-    playerArea.innerHTML = '<div id="twitch-player"></div>';
+    // 前回のプレイヤーを削除
+    playerArea.innerHTML = "";
 
-    // 新しいプレイヤー生成
+    // 新しいプレイヤー用DIV
+    const playerDiv = document.createElement("div");
+    playerDiv.id = "twitch-player";
+
+    playerArea.appendChild(playerDiv);
+
+    // Twitch Player生成
     player = new Twitch.Player("twitch-player", {
 
-        width: "100%",
-        height: 450,
-
         channel: channel,
+
+        width: "100%",
+
+        height: "100%",
 
         parent: [
             "ragna-ria.github.io"
@@ -28,6 +35,9 @@ function createPlayer(channel) {
 
     });
 
-    console.log(`プレイヤー作成：${channel}`);
+    // 音声ON
+    player.setMuted(false);
+
+    console.log(`プレイヤー更新 : ${channel}`);
 
 }
