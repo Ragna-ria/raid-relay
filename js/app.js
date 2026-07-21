@@ -1,25 +1,37 @@
 let currentChannel = "";
 
+/**
+ * データ取得・画面更新
+ */
 async function refresh() {
-    try {
-        const data = await loadCurrent();
 
-        console.log("取得データ:", data);
+    const data = await loadCurrent();
 
-        updateUI(data);
-
-        if (currentChannel !== data.channel) {
-            console.log(`チャンネル変更: ${currentChannel} → ${data.channel}`);
-
-            currentChannel = data.channel;
-
-            createPlayer(currentChannel);
-        }
-
-    } catch (error) {
-        console.error(error);
+    // 読み込み失敗
+    if (!data) {
+        return;
     }
+
+    // UI更新
+    updateUI(data);
+
+    // チャンネルが変わったらプレイヤー更新
+    if (currentChannel !== data.channel) {
+
+        console.log(
+            `チャンネル変更：${currentChannel} → ${data.channel}`
+        );
+
+        currentChannel = data.channel;
+
+        createPlayer(currentChannel);
+
+    }
+
 }
 
+// 初回実行
 refresh();
+
+// 5秒ごとに更新
 setInterval(refresh, 5000);
