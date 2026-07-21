@@ -1,230 +1,240 @@
-/* ==========================================
-   レイドでつなぐ生誕祭
-   Theme Color : #69e0ff
-========================================== */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-
-    background: #f4fcff;
-
-    color: #2c3e50;
-
-    font-family: "Noto Sans JP",
-        "Hiragino Sans",
-        sans-serif;
-
-    padding: 30px;
-
-}
-
-/* =============================
+/* =====================================
    全体
-============================= */
+===================================== */
 
-.container {
+body{
+    margin:0;
+    background:#ffffff;
+    font-family:"Noto Sans JP",sans-serif;
+    color:#008bd7;
+}
 
-    max-width: 960px;
+.container{
 
-    margin: auto;
+    width:min(1000px,92%);
+    margin:40px auto;
 
 }
 
-/* =============================
+
+/* =====================================
    タイトル
-============================= */
+===================================== */
 
-header {
+header{
 
-    text-align: center;
-
-    margin-bottom: 35px;
-
-}
-
-h1 {
-
-    font-size: 42px;
-
-    color: #00a8d8;
-
-    margin-bottom: 15px;
+    text-align:center;
+    margin-bottom:25px;
 
 }
 
-.live {
+h1{
 
-    display: inline-block;
-
-    padding: 8px 20px;
-
-    background: #ff3b30;
-
-    color: white;
-
-    border-radius: 999px;
-
-    font-weight: bold;
-
-    font-size: 22px;
+    margin:0;
+    font-size:56px;
+    font-weight:900;
+    color:#008bd7;
 
 }
 
-/* =============================
-   カード共通
-============================= */
 
-.runner-card,
-.player-card,
-.next-card,
-.progress-card {
+/* =====================================
+   LIVE
+===================================== */
 
-    background: white;
+.live{
 
-    border: 3px solid #69e0ff;
+    margin-top:28px;
 
-    border-radius: 20px;
+    font-size:34px;
+    font-weight:900;
 
-    padding: 25px;
+    color:#ff2020;
 
-    margin-bottom: 25px;
-
-    box-shadow: 0 8px 20px rgba(105,224,255,.20);
+    animation:blink 1.2s infinite;
 
 }
 
-/* =============================
-   見出し
-============================= */
+@keyframes blink{
 
-h2,
-h3 {
-
-    text-align: center;
-
-    color: #00a8d8;
-
-    font-weight: bold;
-
-    margin-bottom: 18px;
+    0%{opacity:1;}
+    50%{opacity:.35;}
+    100%{opacity:1;}
 
 }
 
-/* =============================
+
+/* =====================================
    現在の走者
-============================= */
+===================================== */
 
-.runner-name {
+.runner-card{
 
-    text-align: center;
+    display:flex;
+    align-items:baseline;
+    gap:28px;
 
-    font-size: 42px;
-
-    font-weight: bold;
-
-    color: #69e0ff;
-
-}
-
-/* =============================
-   プレイヤー
-============================= */
-
-#playerArea {
-
-    width: 100%;
-
-    max-width: 800px;
-
-    margin: auto;
-
-    border-radius: 15px;
-
-    overflow: hidden;
-
-    background: #000;
+    margin-top:35px;
+    margin-bottom:25px;
 
 }
 
-/* =============================
-   次の走者
-============================= */
+.runner-card h2{
 
-.next-name {
+    margin:0;
 
-    text-align: center;
-
-    font-size: 30px;
-
-    font-weight: bold;
-
-    color: #46d3ff;
+    font-size:52px;
+    color:#008bd7;
 
 }
 
-/* =============================
+.runner-name{
+
+    font-size:64px;
+    font-weight:900;
+
+    color:#69e0ff;
+
+}
+
+
+/* =====================================
+   Twitch Player
+===================================== */
+
+.player-card{
+
+    margin:0 auto;
+
+}
+
+#playerArea{
+
+    width:100%;
+    aspect-ratio:16 / 9;
+
+    border:5px solid #69e0ff;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    background:#69e0ff;
+
+}
+
+
+/* =====================================
+   下部
+===================================== */
+
+.bottom{
+
+    margin-top:30px;
+
+    display:flex;
+
+    justify-content:flex-end;
+
+}
+
+.next-card{
+
+    display:flex;
+
+    gap:20px;
+
+    align-items:baseline;
+
+}
+
+.next-card h3{
+
+    margin:0;
+
+    font-size:42px;
+
+    color:#008bd7;
+
+}
+
+.next-name{
+
+    font-size:52px;
+
+    font-weight:900;
+
+    color:#008bd7;
+
+}
+
+
+/* =====================================
    進行状況
-============================= */
+===================================== */
 
-#progressText {
+.progress-card{
 
-    text-align: center;
-
-    font-size: 28px;
-
-    font-weight: bold;
-
-    color: #00a8d8;
+    display:none;
 
 }
 
-/* =============================
+
+/* =====================================
    スマホ
-============================= */
+===================================== */
 
-@media (max-width:768px){
-
-    body{
-
-        padding:15px;
-
-    }
+@media(max-width:768px){
 
     h1{
 
-        font-size:30px;
+        font-size:36px;
 
     }
 
-    .runner-name{
-
-        font-size:32px;
-
-    }
-
-    .next-name{
+    .live{
 
         font-size:24px;
 
     }
 
-    #progressText{
+    .runner-card{
 
-        font-size:22px;
+        flex-direction:column;
+        gap:8px;
 
     }
 
-    .runner-card,
-    .player-card,
-    .next-card,
-    .progress-card{
+    .runner-card h2{
 
-        padding:18px;
+        font-size:28px;
+
+    }
+
+    .runner-name{
+
+        font-size:42px;
+
+    }
+
+    .next-card{
+
+        flex-direction:column;
+        gap:5px;
+
+        align-items:flex-end;
+
+    }
+
+    .next-card h3{
+
+        font-size:24px;
+
+    }
+
+    .next-name{
+
+        font-size:32px;
 
     }
 
