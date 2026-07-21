@@ -1,8 +1,10 @@
 {
-  "channel": "ragna_ria",
-  "currentName":"らぐな_",
-  "nextChannel":"",
-  "nextName":"",
-  "number":1,
-  "total":1
+    "channel": "ragna_ria",
+    "currentName": "らぐな_",
+
+    "nextChannel": "",
+    "nextName": "未定",
+
+    "number": 1,
+    "total": 20
 }
