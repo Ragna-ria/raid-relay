@@ -82,44 +82,6 @@ body {
 
 }
 
-.current{
-
-    display:flex;
-
-    align-items:baseline;
-
-    gap:14px;
-
-    margin-bottom:20px;
-
-}
-
-.current .label{
-
-    color:#69e0ff;
-
-    font-size:26px;
-
-    font-weight:900;
-
-    white-space:nowrap;
-
-    flex-shrink:0;
-
-}
-
-.current-name{
-
-    color:#0b56d8;
-
-    font-size:32px;
-
-    font-weight:900;
-
-    white-space:nowrap;
-
-}
-
 /* ===========================
    Twitch Player
 =========================== */
