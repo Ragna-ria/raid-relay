@@ -1,155 +1,231 @@
-/* =========================
-   全体
-========================= */
+/* ==========================================
+   レイドでつなぐ生誕祭
+   Theme Color : #69e0ff
+========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
-    margin: 0;
-    padding: 30px;
+
     background: #f4fcff;
-    font-family: "Noto Sans JP", sans-serif;
+
     color: #2c3e50;
+
+    font-family: "Noto Sans JP",
+        "Hiragino Sans",
+        sans-serif;
+
+    padding: 30px;
+
 }
+
+/* =============================
+   全体
+============================= */
 
 .container {
-    max-width: 900px;
+
+    max-width: 960px;
+
     margin: auto;
-    background: #ffffff;
-    border: 3px solid #69e0ff;
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 8px 20px rgba(105, 224, 255, 0.2);
+
 }
 
-/* =========================
+/* =============================
    タイトル
-========================= */
+============================= */
+
+header {
+
+    text-align: center;
+
+    margin-bottom: 35px;
+
+}
 
 h1 {
-    margin-top: 0;
-    margin-bottom: 25px;
-    text-align: center;
-    color: #00a8d8;
-    font-size: 42px;
-}
 
-/* =========================
-   LIVE
-========================= */
+    font-size: 42px;
+
+    color: #00a8d8;
+
+    margin-bottom: 15px;
+
+}
 
 .live {
-    text-align: center;
-    color: #ff3b30;
-    font-size: 30px;
+
+    display: inline-block;
+
+    padding: 8px 20px;
+
+    background: #ff3b30;
+
+    color: white;
+
+    border-radius: 999px;
+
     font-weight: bold;
-    margin-bottom: 20px;
+
+    font-size: 22px;
+
 }
 
-/* =========================
+/* =============================
+   カード共通
+============================= */
+
+.runner-card,
+.player-card,
+.next-card,
+.progress-card {
+
+    background: white;
+
+    border: 3px solid #69e0ff;
+
+    border-radius: 20px;
+
+    padding: 25px;
+
+    margin-bottom: 25px;
+
+    box-shadow: 0 8px 20px rgba(105,224,255,.20);
+
+}
+
+/* =============================
+   見出し
+============================= */
+
+h2,
+h3 {
+
+    text-align: center;
+
+    color: #00a8d8;
+
+    font-weight: bold;
+
+    margin-bottom: 18px;
+
+}
+
+/* =============================
    現在の走者
-========================= */
+============================= */
 
-.current-runner {
+.runner-name {
+
     text-align: center;
-    margin-bottom: 20px;
-}
 
-.current-runner h2 {
-    margin: 0;
-    font-size: 26px;
-    font-weight: normal;
-}
-
-#currentName {
-    color: #69e0ff;
     font-size: 42px;
+
     font-weight: bold;
+
+    color: #69e0ff;
+
 }
 
-/* =========================
-   Twitch Player
-========================= */
+/* =============================
+   プレイヤー
+============================= */
 
 #playerArea {
+
     width: 100%;
+
     max-width: 800px;
-    margin: 0 auto 25px;
-    border: 4px solid #69e0ff;
-    border-radius: 18px;
+
+    margin: auto;
+
+    border-radius: 15px;
+
     overflow: hidden;
+
     background: #000;
+
 }
 
-/* =========================
+/* =============================
    次の走者
-========================= */
+============================= */
 
-.next-runner {
+.next-name {
+
     text-align: center;
-}
 
-.next-runner h3 {
-    margin: 0;
-    font-size: 24px;
-    font-weight: normal;
-}
+    font-size: 30px;
 
-#nextName {
+    font-weight: bold;
+
     color: #46d3ff;
-    font-size: 32px;
-    font-weight: bold;
+
 }
 
-/* =========================
+/* =============================
    進行状況
-========================= */
+============================= */
 
-.progress {
-    margin-top: 30px;
+#progressText {
+
     text-align: center;
-    font-size: 24px;
+
+    font-size: 28px;
+
     font-weight: bold;
+
     color: #00a8d8;
+
 }
 
-/* =========================
-   スマホ対応
-========================= */
+/* =============================
+   スマホ
+============================= */
 
-@media (max-width: 768px) {
+@media (max-width:768px){
 
-    body {
-        padding: 15px;
+    body{
+
+        padding:15px;
+
     }
 
-    .container {
-        padding: 20px;
+    h1{
+
+        font-size:30px;
+
     }
 
-    h1 {
-        font-size: 30px;
+    .runner-name{
+
+        font-size:32px;
+
     }
 
-    .live {
-        font-size: 24px;
+    .next-name{
+
+        font-size:24px;
+
     }
 
-    .current-runner h2 {
-        font-size: 20px;
+    #progressText{
+
+        font-size:22px;
+
     }
 
-    #currentName {
-        font-size: 32px;
+    .runner-card,
+    .player-card,
+    .next-card,
+    .progress-card{
+
+        padding:18px;
+
     }
 
-    .next-runner h3 {
-        font-size: 20px;
-    }
-
-    #nextName {
-        font-size: 26px;
-    }
-
-    .progress {
-        font-size: 20px;
-    }
 }
