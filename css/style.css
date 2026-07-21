@@ -2,21 +2,21 @@
    全体
 =========================== */
 
-body{
+body {
 
-    margin:0;
+    margin: 0;
 
-    background:#f4fcff;
+    background: #f4fcff;
 
-    font-family:"Noto Sans JP",sans-serif;
+    font-family: "Noto Sans JP", sans-serif;
 
 }
 
-.container{
+.container {
 
-    width:900px;
+    width: min(1000px, 95%);
 
-    margin:40px auto;
+    margin: 35px auto;
 
 }
 
@@ -24,17 +24,17 @@ body{
    タイトル
 =========================== */
 
-.title{
+.title {
 
-    text-align:center;
+    text-align: center;
 
-    color:#0b84d8;
+    color: #0b84d8;
 
-    font-size:38px;
+    font-size: 40px;
 
-    font-weight:900;
+    font-weight: 900;
 
-    margin:0 0 35px;
+    margin: 0 0 30px;
 
 }
 
@@ -42,15 +42,15 @@ body{
    LIVE
 =========================== */
 
-.live{
+.live {
 
-    color:#e40000;
+    color: #e40000;
 
-    font-size:20px;
+    font-size: 24px;
 
-    font-weight:900;
+    font-weight: 900;
 
-    margin-bottom:30px;
+    margin-bottom: 25px;
 
 }
 
@@ -58,35 +58,41 @@ body{
    NOW STREAMING
 =========================== */
 
-.current{
+.current {
 
-    display:flex;
+    display: flex;
 
-    align-items:center;
+    align-items: baseline;
 
-    gap:18px;
+    gap: 16px;
 
-    margin-bottom:30px;
-
-}
-
-.current .label{
-
-    color:#0b56d8;
-
-    font-size:25px;
-
-    font-weight:900;
+    margin-bottom: 25px;
 
 }
 
-.current-name{
+.current .label {
 
-    color:#69e0ff;
+    color: #0b56d8;
 
-    font-size:25px;
+    font-size: 26px;
 
-    font-weight:900;
+    font-weight: 900;
+
+    white-space: nowrap;
+
+    flex-shrink: 0;
+
+}
+
+.current-name {
+
+    color: #69e0ff;
+
+    font-size: 32px;
+
+    font-weight: 900;
+
+    white-space: nowrap;
 
 }
 
@@ -94,37 +100,39 @@ body{
    Twitch Player
 =========================== */
 
-#playerArea{
+#playerArea {
 
-    width:100%;
+    width: 100%;
 
-    height:506px;
+    aspect-ratio: 16 / 9;
 
-    border:5px solid #69e0ff;
+    border: 5px solid #69e0ff;
 
-    border-radius:18px;
+    border-radius: 18px;
 
-    overflow:hidden;
+    overflow: hidden;
 
-    background:#69e0ff;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
+    background: #000;
 
 }
 
-/* Twitchのiframe */
+#twitch-player {
 
-#playerArea iframe{
+    width: 100%;
 
-    width:100%;
+    height: 100%;
 
-    height:100%;
+}
 
-    display:block;
+#twitch-player iframe {
+
+    width: 100%;
+
+    height: 100%;
+
+    border: none;
+
+    display: block;
 
 }
 
@@ -132,37 +140,41 @@ body{
    NEXT
 =========================== */
 
-.next{
+.next {
 
-    display:flex;
+    display: flex;
 
-    justify-content:flex-end;
+    justify-content: flex-end;
 
-    align-items:center;
+    align-items: baseline;
 
-    gap:16px;
+    gap: 14px;
 
-    margin-top:25px;
-
-}
-
-.next .label{
-
-    color:#0b56d8;
-
-    font-size:25px;
-
-    font-weight:900;
+    margin-top: 22px;
 
 }
 
-.next-name{
+.next .label {
 
-    color:#69e0ff;
+    color: #0b56d8;
 
-    font-size:25px;
+    font-size: 22px;
 
-    font-weight:900;
+    font-weight: 900;
+
+    white-space: nowrap;
+
+}
+
+.next-name {
+
+    color: #69e0ff;
+
+    font-size: 24px;
+
+    font-weight: 900;
+
+    white-space: nowrap;
 
 }
 
@@ -170,15 +182,15 @@ body{
    Progress
 =========================== */
 
-.progress{
+.progress {
 
-    text-align:right;
+    text-align: right;
 
-    margin-top:12px;
+    margin-top: 8px;
 
-    color:#888;
+    color: #888;
 
-    font-size:18px;
+    font-size: 15px;
 
 }
 
@@ -186,91 +198,78 @@ body{
    スマホ
 =========================== */
 
-@media (max-width:900px){
+@media (max-width: 768px) {
 
-    .container{
+    .container {
 
-        width:95%;
+        width: 95%;
 
-    }
-
-    .title{
-
-        font-size:36px;
+        margin: 20px auto;
 
     }
 
-    .live{
+    .title {
 
-        font-size:24px;
-
-    }
-
-    .current{
-
-        flex-direction:column;
-
-        align-items:flex-start;
-
-        gap:8px;
+        font-size: 30px;
 
     }
 
-    .current .label{
+    .live {
 
-        font-size:28px;
-
-    }
-
-    .current-name{
-
-        font-size:34px;
+        font-size: 20px;
 
     }
 
-    #playerArea{
+    .current {
 
-        height:300px;
+        flex-wrap: wrap;
 
-    }
-
-    .next{
-
-        justify-content:flex-start;
+        gap: 8px;
 
     }
 
-    .next .label{
+    .current .label {
 
-        font-size:24px;
-
-    }
-
-    .next-name{
-
-        font-size:24px;
+        font-size: 20px;
 
     }
 
-}
-/* Twitch Player */
+    .current-name {
 
-#twitch-player{
+        font-size: 26px;
 
-    width:100%;
+    }
 
-    height:100%;
+    #playerArea {
 
-}
+        width: 100%;
 
-#twitch-player iframe{
+    }
 
-    width:100%;
+    .next {
 
-    height:100%;
+        justify-content: flex-end;
 
-    border:none;
+        gap: 8px;
 
-    display:block;
+    }
+
+    .next .label {
+
+        font-size: 18px;
+
+    }
+
+    .next-name {
+
+        font-size: 20px;
+
+    }
+
+    .progress {
+
+        font-size: 13px;
+
+    }
 
 }
