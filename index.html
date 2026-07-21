@@ -16,61 +16,61 @@
 
     <div class="container">
 
-        <header>
+        <!-- タイトル -->
+        <h1 class="title">
+            レイドでつなぐ生誕祭
+        </h1>
 
-            <h1>🎂 レイドでつなぐ生誕祭</h1>
+        <!-- LIVE -->
+        <div class="live">
+            🔴 LIVE NOW
+        </div>
 
-            <div class="live">
-                🔴 LIVE
-            </div>
+        <!-- 現在の走者 -->
+        <div class="current">
 
-        </header>
+            <span class="label">
+                現在の走者
+            </span>
 
-        <main>
+            <span
+                id="currentName"
+                class="current-name">
 
-            <section class="runner-card">
+                読み込み中...
 
-                <h2>
-                    現在の走者
-                </h2>
+            </span>
 
-                <div id="currentName" class="runner-name">
-                    読み込み中...
-                </div>
+        </div>
 
-            </section>
+        <!-- Twitch Player -->
+        <div id="playerArea"></div>
 
-            <section class="player-card">
+        <!-- 次の走者 -->
+        <div class="next">
 
-                <div id="playerArea"></div>
+            <span class="label">
+                次の走者
+            </span>
 
-            </section>
+            <span
+                id="nextName"
+                class="next-name">
 
-            <section class="next-card">
+                未定
 
-                <h3>
-                    次の走者
-                </h3>
+            </span>
 
-                <div id="nextName" class="next-name">
-                    未定
-                </div>
+        </div>
 
-            </section>
+        <!-- 進行状況（小さく表示） -->
+        <div class="progress">
 
-            <section class="progress-card">
+            <span id="progressText">
+                -
+            </span>
 
-                <h3>
-                    進行状況
-                </h3>
-
-                <div id="progressText">
-                    -
-                </div>
-
-            </section>
-
-        </main>
+        </div>
 
     </div>
 
