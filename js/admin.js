@@ -1,5 +1,7 @@
 const API="https://raid-relay-worker.riasachi-r.workers.dev";
 
+alert("admin.js 読み込み成功");
+
 load();
 
 async function load(){
