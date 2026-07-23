@@ -1,68 +1,42 @@
-const API="https://raid-relay-worker.riasachi-r.workers.dev";
+const API = "https://raid-relay-worker.riasachi-r.workers.dev";
 
 alert("admin.js 読み込み成功");
 
-load();
+window.addEventListener("DOMContentLoaded", () => {
 
-async function load(){
+    document.getElementById("saveButton").onclick = function () {
+        alert("クリックされました");
+    };
 
-const events=await fetch(API+"/events");
-
-const eventList=await events.json();
-
-const select=document.getElementById("eventSelect");
-
-eventList.forEach(event=>{
-
-const option=document.createElement("option");
-
-option.value=event.id;
-
-option.textContent=event.title;
-
-select.appendChild(option);
+    load();
 
 });
 
-const current=await fetch(API+"/current");
+async function load() {
 
-const data=await current.json();
+    const events = await fetch(API + "/events");
+    const eventList = await events.json();
 
-document.getElementById("currentName").value=data.currentName;
+    const select = document.getElementById("eventSelect");
+    select.innerHTML = "";
 
-document.getElementById("currentChannel").value=data.channel;
+    eventList.forEach(event => {
 
-document.getElementById("nextName").value=data.nextName;
-
-document.getElementById("nextChannel").value=data.nextChannel;
-
-document.getElementById("number").value=data.number;
-
-document.getElementById("total").value=data.total;
-
-}
-document.getElementById("saveButton").addEventListener("click", () => {
-    alert("ボタンが押されました");
-});
-
-async function save() {
-
-    const response = await fetch(API + "/save", {
-
-        method: "POST",
-
-        headers: {
-            "Content-Type": "application/json"
-        },
-
-        body: JSON.stringify({
-            test: true
-        })
+        const option = document.createElement("option");
+        option.value = event.id;
+        option.textContent = event.title;
+        select.appendChild(option);
 
     });
 
-    const result = await response.json();
+    const current = await fetch(API + "/current");
+    const data = await current.json();
 
-    alert(result.status);
+    document.getElementById("currentName").value = data.currentName;
+    document.getElementById("currentChannel").value = data.channel;
+    document.getElementById("nextName").value = data.nextName;
+    document.getElementById("nextChannel").value = data.nextChannel;
+    document.getElementById("number").value = data.number;
+    document.getElementById("total").value = data.total;
 
 }
