@@ -39,3 +39,26 @@ document.getElementById("number").value=data.number;
 document.getElementById("total").value=data.total;
 
 }
+document.getElementById("saveButton").addEventListener("click", save);
+
+async function save() {
+
+    const response = await fetch(API + "/save", {
+
+        method: "POST",
+
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify({
+            test: true
+        })
+
+    });
+
+    const result = await response.json();
+
+    alert(result.status);
+
+}
