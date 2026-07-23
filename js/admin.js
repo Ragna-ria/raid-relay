@@ -41,6 +41,8 @@ async function load() {
 
 async function save() {
 
+    alert("save開始");
+
     const data = {
 
         channel: document.getElementById("currentChannel").value,
