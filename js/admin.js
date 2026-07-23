@@ -4,9 +4,7 @@ alert("admin.js 読み込み成功");
 
 window.addEventListener("DOMContentLoaded", () => {
 
-    document.getElementById("saveButton").onclick = function () {
-        alert("クリックされました");
-    };
+    document.getElementById("saveButton").onclick = save;
 
     load();
 
@@ -38,5 +36,38 @@ async function load() {
     document.getElementById("nextChannel").value = data.nextChannel;
     document.getElementById("number").value = data.number;
     document.getElementById("total").value = data.total;
+
+}
+
+async function save() {
+
+    const data = {
+
+        channel: document.getElementById("currentChannel").value,
+        currentName: document.getElementById("currentName").value,
+
+        nextChannel: document.getElementById("nextChannel").value,
+        nextName: document.getElementById("nextName").value,
+
+        number: Number(document.getElementById("number").value),
+        total: Number(document.getElementById("total").value)
+
+    };
+
+    const response = await fetch(API + "/save", {
+
+        method: "POST",
+
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify(data)
+
+    });
+
+    const result = await response.json();
+
+    alert(result.status);
 
 }
