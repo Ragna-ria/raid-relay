@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>レイドリレー管理画面</title>
+
+<link rel="stylesheet" href="css/admin.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>レイドリレー管理画面</h1>
+
+<div class="card">
+
+<h2>イベント</h2>
+
+<select id="eventSelect"></select>
+
+</div>
+
+<div class="card">
+
+<h2>NOW STREAMING</h2>
+
+<label>表示名</label>
+<input id="currentName">
+
+<label>Twitchチャンネル</label>
+<input id="currentChannel">
+
+</div>
+
+<div class="card">
+
+<h2>NEXT</h2>
+
+<label>表示名</label>
+<input id="nextName">
+
+<label>Twitchチャンネル</label>
+<input id="nextChannel">
+
+</div>
+
+<div class="card numbers">
+
+<div>
+
+<label>現在</label>
+
+<input
+id="number"
+type="number">
+
+</div>
+
+<div>
+
+<label>全体</label>
+
+<input
+id="total"
+type="number">
+
+</div>
+
+</div>
+
+<div class="buttons">
+
+<button id="saveButton">
+
+💾 保存
+
+</button>
+
+</div>
+
+</div>
+
+<script src="js/admin.js"></script>
+
+</body>
+</html>
