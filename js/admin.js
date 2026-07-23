@@ -1,4 +1,4 @@
-const API="https://あなたのWorkerURL";
+const API="https://raid-relay-worker.riasachi-r.workers.dev";
 
 load();
 
