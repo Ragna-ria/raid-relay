@@ -39,7 +39,9 @@ document.getElementById("number").value=data.number;
 document.getElementById("total").value=data.total;
 
 }
-document.getElementById("saveButton").addEventListener("click", save);
+document.getElementById("saveButton").addEventListener("click", () => {
+    alert("ボタンが押されました");
+});
 
 async function save() {
 
