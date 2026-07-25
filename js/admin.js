@@ -61,3 +61,38 @@ async function load() {
     document.getElementById("total").value = data.total;
 
 }
+
+async function save() {
+
+    alert("save開始");
+
+    const data = {
+
+        channel: document.getElementById("currentChannel").value,
+        currentName: document.getElementById("currentName").value,
+
+        nextChannel: document.getElementById("nextChannel").value,
+        nextName: document.getElementById("nextName").value,
+
+        number: Number(document.getElementById("number").value),
+        total: Number(document.getElementById("total").value)
+
+    };
+
+    const response = await fetch(API + "/save", {
+
+        method: "POST",
+
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify(data)
+
+    });
+
+    const result = await response.json();
+
+    alert(result.status);
+
+}
