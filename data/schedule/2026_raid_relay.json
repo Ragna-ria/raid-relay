@@ -1,14 +1,9 @@
 {
   "eventId": "2026_raid_relay",
-
   "title": "レイドでつなぐ生誕祭",
-
   "description": "ドラえもん生誕祭レイドリレー",
-
   "startTime": "",
-
   "currentRunner": 0,
-
   "runners": [
     {
       "id": 1,
@@ -17,8 +12,8 @@
     },
     {
       "id": 2,
-      "name": "",
-      "channel": ""
+      "name": "緋の目のタルマン",
+      "channel": "hinome_no_taruman"
     }
   ]
 }
