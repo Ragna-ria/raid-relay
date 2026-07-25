@@ -12,6 +12,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 async function load() {
 
+    // イベント一覧
     const events = await fetch(API + "/events");
     const eventList = await events.json();
 
@@ -20,27 +21,6 @@ async function load() {
 
     eventList.forEach(event => {
 
-        const schedule = await fetch(API + "/schedule");
-        const runnerList = await schedule.json();
-
-        const tbody = document.querySelector("#scheduleTable tbody");
-
-        tbody.innerHTML = "";
-
-        runnerList.forEach(runner => {
-
-            const tr = document.createElement("tr");
-
-            tr.innerHTML = `
-            <td>${runner.id}</td>
-            <td>${runner.name}</td>
-            <td>${runner.channel}</td>
-            `;
-
-            tbody.appendChild(tr);
-
-        });
-
         const option = document.createElement("option");
         option.value = event.id;
         option.textContent = event.title;
@@ -48,6 +28,28 @@ async function load() {
 
     });
 
+    // 走者一覧
+    const schedule = await fetch(API + "/schedule");
+    const runnerList = await schedule.json();
+
+    const tbody = document.querySelector("#scheduleTable tbody");
+    tbody.innerHTML = "";
+
+    runnerList.forEach(runner => {
+
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+            <td>${runner.id}</td>
+            <td>${runner.name}</td>
+            <td>${runner.channel}</td>
+        `;
+
+        tbody.appendChild(tr);
+
+    });
+
+    // 現在表示
     const current = await fetch(API + "/current");
     const data = await current.json();
 
@@ -57,40 +59,5 @@ async function load() {
     document.getElementById("nextChannel").value = data.nextChannel;
     document.getElementById("number").value = data.number;
     document.getElementById("total").value = data.total;
-
-}
-
-async function save() {
-
-    alert("save開始");
-
-    const data = {
-
-        channel: document.getElementById("currentChannel").value,
-        currentName: document.getElementById("currentName").value,
-
-        nextChannel: document.getElementById("nextChannel").value,
-        nextName: document.getElementById("nextName").value,
-
-        number: Number(document.getElementById("number").value),
-        total: Number(document.getElementById("total").value)
-
-    };
-
-    const response = await fetch(API + "/save", {
-
-        method: "POST",
-
-        headers: {
-            "Content-Type": "application/json"
-        },
-
-        body: JSON.stringify(data)
-
-    });
-
-    const result = await response.json();
-
-    alert(result.status);
 
 }
