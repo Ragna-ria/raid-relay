@@ -776,20 +776,18 @@ function showError(error) {
 ======================================== */
 
 async function advanceRunner() {
-
-    ...
-
+    await moveRunner("advance");
 }
+
 
 /* ========================================
    前へ
 ======================================== */
 
 async function previousRunner() {
-
-    ...
-
+    await moveRunner("previous");
 }
+
 
 /* ========================================
    進行操作
@@ -797,6 +795,57 @@ async function previousRunner() {
 
 async function moveRunner(action) {
 
-    ...
+    if (!currentEvent) {
+        return;
+    }
+
+    try {
+
+        const token = getAdminToken();
+
+        if (!token) {
+            return;
+        }
+
+        const response = await fetch(
+            `${API}/${action}`,
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-Admin-Token": token
+                },
+
+                body: JSON.stringify({
+                    eventId: currentEvent.eventId
+                })
+            }
+        );
+
+        const result =
+            await readApiResponse(response);
+
+        currentEvent =
+            normalizeEvent(result.event);
+
+        renderRunnerList();
+        updateCurrentDisplay();
+
+        showMessage(
+            result.message || "更新しました。"
+        );
+
+    } catch (error) {
+
+        if (error.status === 401) {
+            sessionStorage.removeItem(
+                ADMIN_TOKEN_KEY
+            );
+        }
+
+        showError(error);
+
+    }
 
 }
