@@ -4,9 +4,9 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>レイドリレー管理画面</title>
+<title>レイドでつなぐ生誕祭 管理画面</title>
 
 <link rel="stylesheet" href="css/admin.css">
 
@@ -16,7 +16,7 @@
 
 <div class="container">
 
-<h1>レイドリレー管理画面</h1>
+<h1 id="eventTitle">レイドでつなぐ生誕祭</h1>
 
 <div class="card">
 
@@ -24,25 +24,19 @@
 
 <select id="eventSelect"></select>
 
-  <div class="card">
+</div>
+
+<div class="card">
 
 <h2>走者一覧</h2>
 
-<table id="scheduleTable">
+<div id="runnerList"></div>
 
-<thead>
-<tr>
-<th>#</th>
-<th>名前</th>
-<th>チャンネル</th>
-</tr>
-</thead>
+<div class="buttons">
 
-<tbody>
-
-</tbody>
-
-</table>
+<button id="addRunnerButton">
+＋走者追加
+</button>
 
 </div>
 
@@ -50,58 +44,20 @@
 
 <div class="card">
 
-<h2>NOW STREAMING</h2>
+<h2>現在</h2>
 
-<label>表示名</label>
-<input id="currentName">
+<p id="currentRunnerName">-</p>
 
-<label>Twitchチャンネル</label>
-<input id="currentChannel">
+<h2>次</h2>
 
-</div>
-
-<div class="card">
-
-<h2>NEXT</h2>
-
-<label>表示名</label>
-<input id="nextName">
-
-<label>Twitchチャンネル</label>
-<input id="nextChannel">
-
-</div>
-
-<div class="card numbers">
-
-<div>
-
-<label>現在</label>
-
-<input
-id="number"
-type="number">
-
-</div>
-
-<div>
-
-<label>全体</label>
-
-<input
-id="total"
-type="number">
-
-</div>
+<p id="nextRunnerName">-</p>
 
 </div>
 
 <div class="buttons">
 
 <button id="saveButton">
-
 💾 保存
-
 </button>
 
 </div>
@@ -111,4 +67,5 @@ type="number">
 <script src="js/admin.js"></script>
 
 </body>
+
 </html>
