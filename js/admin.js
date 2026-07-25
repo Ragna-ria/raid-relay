@@ -20,6 +20,27 @@ async function load() {
 
     eventList.forEach(event => {
 
+        const schedule = await fetch(API + "/schedule");
+        const runnerList = await schedule.json();
+
+        const tbody = document.querySelector("#scheduleTable tbody");
+
+        tbody.innerHTML = "";
+
+        runnerList.forEach(runner => {
+
+            const tr = document.createElement("tr");
+
+            tr.innerHTML = `
+            <td>${runner.id}</td>
+            <td>${runner.name}</td>
+            <td>${runner.channel}</td>
+            `;
+
+            tbody.appendChild(tr);
+
+        });
+
         const option = document.createElement("option");
         option.value = event.id;
         option.textContent = event.title;
