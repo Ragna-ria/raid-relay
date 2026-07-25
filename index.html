@@ -1,84 +1,226 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
-
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="レイドでつなぐ生誕祭のイベントページです。"
+    >
 
     <title>レイドでつなぐ生誕祭</title>
 
-    <link rel="stylesheet" href="css/style.css">
-
+    <link
+        rel="stylesheet"
+        href="./css/style.css?v=0.1.0-04a"
+    >
 </head>
 
 <body>
 
-    <div class="container">
+    <div class="siteContainer">
 
-        <h1 class="title">
-            🎂 レイドでつなぐ生誕祭
-        </h1>
+        <!-- ========================================
+             ヘッダー
+        ========================================= -->
 
-<div class="live">
+        <header class="siteHeader">
 
-    <span class="live-dot">🔴</span>
+            <p class="eventLabel">
+                Twitch Raid Relay Event
+            </p>
 
-    <span>LIVE</span>
+            <h1 id="eventTitle">
+                レイドでつなぐ生誕祭
+            </h1>
 
-</div>
+            <p
+                id="eventDescription"
+                class="eventDescription"
+            ></p>
 
-        <div class="current">
+        </header>
 
-            <span class="label">
-                NOW STREAMING ▶▶
-            </span>
 
-            <span
-                id="currentName"
-                class="current-name">
+        <!-- ========================================
+             読み込み状態
+        ========================================= -->
 
-                読み込み中...
-
-            </span>
-
+        <div
+            id="loadingMessage"
+            class="statusMessage"
+            role="status"
+        >
+            イベント情報を読み込んでいます…
         </div>
 
-        <div id="playerArea"></div>
+        <div
+            id="errorMessage"
+            class="statusMessage errorMessage"
+            role="alert"
+            hidden
+        ></div>
 
-        <div class="next">
 
-            <span class="label">
-                NEXT ▶▶
-            </span>
+        <!-- ========================================
+             メインコンテンツ
+        ========================================= -->
 
-            <span
-                id="nextName"
-                class="next-name">
+        <main
+            id="eventContent"
+            class="eventContent"
+            hidden
+        >
 
-                未定
+            <!-- 現在・次の走者 -->
 
-            </span>
+            <section
+                class="runnerSummary"
+                aria-label="現在と次の走者"
+            >
 
-        </div>
+                <article class="summaryCard currentCard">
 
-        <div class="progress">
+                    <p class="summaryLabel">
+                        現在の走者
+                    </p>
 
-            <span id="progressText">
-                -
-            </span>
+                    <h2 id="currentRunnerName">
+                        -
+                    </h2>
 
-        </div>
+                    <a
+                        id="currentRunnerLink"
+                        class="channelLink"
+                        href="#"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Twitchチャンネルを開く
+                    </a>
+
+                </article>
+
+
+                <article class="summaryCard nextCard">
+
+                    <p class="summaryLabel">
+                        次の走者
+                    </p>
+
+                    <h2 id="nextRunnerName">
+                        -
+                    </h2>
+
+                    <p
+                        id="nextRunnerChannel"
+                        class="channelName"
+                    >
+                        -
+                    </p>
+
+                </article>
+
+            </section>
+
+
+            <!-- Twitchプレイヤー -->
+
+            <section
+                class="playerSection"
+                aria-labelledby="playerHeading"
+            >
+
+                <div class="sectionHeading">
+
+                    <h2 id="playerHeading">
+                        配信
+                    </h2>
+
+                    <button
+                        id="reloadButton"
+                        class="secondaryButton"
+                        type="button"
+                    >
+                        再読み込み
+                    </button>
+
+                </div>
+
+                <div
+                    id="twitchPlayer"
+                    class="twitchPlayer"
+                ></div>
+
+                <noscript>
+                    このページを利用するにはJavaScriptを有効にしてください。
+                </noscript>
+
+            </section>
+
+
+            <!-- 走者一覧 -->
+
+            <section
+                class="scheduleSection"
+                aria-labelledby="scheduleHeading"
+            >
+
+                <div class="sectionHeading">
+
+                    <h2 id="scheduleHeading">
+                        走者一覧
+                    </h2>
+
+                    <p
+                        id="updateStatus"
+                        class="updateStatus"
+                    >
+                        -
+                    </p>
+
+                </div>
+
+                <ol
+                    id="runnerSchedule"
+                    class="runnerSchedule"
+                ></ol>
+
+            </section>
+
+        </main>
+
+
+        <!-- ========================================
+             フッター
+        ========================================= -->
+
+        <footer class="siteFooter">
+
+            <p>
+                このページはイベントの進行状況に合わせて自動更新されます。
+            </p>
+
+        </footer>
 
     </div>
 
+
+    <!-- Twitch Embed SDK -->
+
     <script src="https://player.twitch.tv/js/embed/v1.js"></script>
 
-    <script src="js/data.js"></script>
-    <script src="js/ui.js"></script>
-    <script src="js/player.js"></script>
-    <script src="js/app.js"></script>
+    <!-- イベントページ本体 -->
+
+    <script
+        src="./js/app.js?v=0.1.0-04a"
+        defer
+    ></script>
 
 </body>
-
 </html>
