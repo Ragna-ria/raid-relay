@@ -758,3 +758,45 @@ function showError(error) {
 
 }
 
+function showError(error) {
+
+    console.error(error);
+
+    window.alert(
+        error.message ||
+        "エラーが発生しました。"
+    );
+
+}
+
+// ←ここから追加
+
+/* ========================================
+   次へ
+======================================== */
+
+async function advanceRunner() {
+
+    ...
+
+}
+
+/* ========================================
+   前へ
+======================================== */
+
+async function previousRunner() {
+
+    ...
+
+}
+
+/* ========================================
+   進行操作
+======================================== */
+
+async function moveRunner(action) {
+
+    ...
+
+}
