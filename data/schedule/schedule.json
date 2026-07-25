@@ -1,0 +1,24 @@
+{
+  "eventId": "2026_raid_relay",
+
+  "title": "レイドでつなぐ生誕祭",
+
+  "description": "ドラえもん生誕祭レイドリレー",
+
+  "startTime": "",
+
+  "currentRunner": 0,
+
+  "runners": [
+    {
+      "id": 1,
+      "name": "らぐな_",
+      "channel": "ragna_ria"
+    },
+    {
+      "id": 2,
+      "name": "",
+      "channel": ""
+    }
+  ]
+}
