@@ -1,98 +1,745 @@
-const API = "https://raid-relay-worker.riasachi-r.workers.dev";
+/*
+========================================
+Raid Relay Admin
+Version 0.1.0
+========================================
+*/
 
-alert("admin.js 読み込み成功");
+const API =
+    "https://raid-relay-worker.riasachi-r.workers.dev";
 
-window.addEventListener("DOMContentLoaded", () => {
+const ADMIN_TOKEN_KEY =
+    "raidRelayAdminToken";
 
-    document.getElementById("saveButton").onclick = save;
+let currentEvent = null;
 
-    load();
 
-});
+/* ========================================
+   初期処理
+======================================== */
 
-async function load() {
+window.addEventListener(
+    "DOMContentLoaded",
+    initialize
+);
 
-    // イベント一覧
-    const events = await fetch(API + "/events");
-    const eventList = await events.json();
 
-    const select = document.getElementById("eventSelect");
+async function initialize() {
+
+    document
+        .getElementById("eventSelect")
+        .addEventListener(
+            "change",
+            handleEventChange
+        );
+
+    document
+        .getElementById("addRunnerButton")
+        .addEventListener(
+            "click",
+            addRunner
+        );
+
+    document
+        .getElementById("saveButton")
+        .addEventListener(
+            "click",
+            saveEvent
+        );
+
+    try {
+
+        await loadEvents();
+
+    } catch (error) {
+
+        showError(error);
+
+    }
+
+}
+
+
+/* ========================================
+   イベント一覧取得
+======================================== */
+
+async function loadEvents() {
+
+    const response = await fetch(
+        `${API}/events?t=${Date.now()}`,
+        {
+            cache: "no-store"
+        }
+    );
+
+    const events = await readApiResponse(response);
+
+    if (!Array.isArray(events)) {
+
+        throw new Error(
+            "イベント一覧の形式が正しくありません。"
+        );
+
+    }
+
+    const select =
+        document.getElementById("eventSelect");
+
     select.innerHTML = "";
 
-    eventList.forEach(event => {
+    events.forEach(event => {
 
-        const option = document.createElement("option");
-        option.value = event.id;
+        const option =
+            document.createElement("option");
+
+        option.value = event.eventId;
         option.textContent = event.title;
+
         select.appendChild(option);
 
     });
 
-    // 走者一覧
-    const schedule = await fetch(API + "/schedule");
-    const runnerList = await schedule.json();
+    if (events.length === 0) {
 
-    const tbody = document.querySelector("#scheduleTable tbody");
-    tbody.innerHTML = "";
+        document.getElementById(
+            "eventTitle"
+        ).textContent = "イベントがありません";
 
-    runnerList.forEach(runner => {
+        renderRunnerList();
+        updateCurrentDisplay();
 
-        const tr = document.createElement("tr");
+        return;
 
-        tr.innerHTML = `
-            <td>${runner.id}</td>
-            <td>${runner.name}</td>
-            <td>${runner.channel}</td>
-        `;
+    }
 
-        tbody.appendChild(tr);
-
-    });
-
-    // 現在表示
-    const current = await fetch(API + "/current");
-    const data = await current.json();
-
-    document.getElementById("currentName").value = data.currentName;
-    document.getElementById("currentChannel").value = data.channel;
-    document.getElementById("nextName").value = data.nextName;
-    document.getElementById("nextChannel").value = data.nextChannel;
-    document.getElementById("number").value = data.number;
-    document.getElementById("total").value = data.total;
+    await loadEvent(events[0].eventId);
 
 }
 
-async function save() {
 
-    alert("save開始");
+/* ========================================
+   イベント選択
+======================================== */
 
-    const data = {
+async function handleEventChange(event) {
 
-        channel: document.getElementById("currentChannel").value,
-        currentName: document.getElementById("currentName").value,
+    try {
 
-        nextChannel: document.getElementById("nextChannel").value,
-        nextName: document.getElementById("nextName").value,
+        await loadEvent(event.target.value);
 
-        number: Number(document.getElementById("number").value),
-        total: Number(document.getElementById("total").value)
+    } catch (error) {
 
-    };
+        showError(error);
 
-    const response = await fetch(API + "/save", {
+    }
 
-        method: "POST",
+}
 
-        headers: {
-            "Content-Type": "application/json"
-        },
 
-        body: JSON.stringify(data)
+/* ========================================
+   イベント詳細取得
+======================================== */
 
+async function loadEvent(eventId) {
+
+    const response = await fetch(
+        `${API}/event?id=${encodeURIComponent(eventId)}&t=${Date.now()}`,
+        {
+            cache: "no-store"
+        }
+    );
+
+    const eventData =
+        await readApiResponse(response);
+
+    currentEvent = normalizeEvent(eventData);
+
+    document.getElementById(
+        "eventTitle"
+    ).textContent = currentEvent.title;
+
+    renderRunnerList();
+    updateCurrentDisplay();
+
+}
+
+
+/* ========================================
+   走者一覧表示
+======================================== */
+
+function renderRunnerList() {
+
+    const runnerList =
+        document.getElementById("runnerList");
+
+    runnerList.innerHTML = "";
+
+    if (
+        !currentEvent ||
+        currentEvent.runners.length === 0
+    ) {
+
+        const emptyMessage =
+            document.createElement("p");
+
+        emptyMessage.textContent =
+            "走者が登録されていません。";
+
+        runnerList.appendChild(emptyMessage);
+
+        return;
+
+    }
+
+    currentEvent.runners.forEach(
+        (runner, index) => {
+
+            const row =
+                document.createElement("div");
+
+            row.className = "runnerRow";
+
+            const radio =
+                document.createElement("input");
+
+            radio.type = "radio";
+            radio.name = "currentRunner";
+            radio.value = String(index);
+            radio.checked =
+                currentEvent.currentRunner === index;
+
+            radio.addEventListener(
+                "change",
+                () => {
+
+                    currentEvent.currentRunner =
+                        index;
+
+                    updateCurrentDisplay();
+
+                }
+            );
+
+            const nameInput =
+                document.createElement("input");
+
+            nameInput.type = "text";
+            nameInput.className = "runnerName";
+            nameInput.placeholder = "表示名";
+            nameInput.value = runner.name;
+
+            nameInput.addEventListener(
+                "input",
+                event => {
+
+                    runner.name =
+                        event.target.value;
+
+                    updateCurrentDisplay();
+
+                }
+            );
+
+            const channelInput =
+                document.createElement("input");
+
+            channelInput.type = "text";
+            channelInput.className =
+                "runnerChannel";
+
+            channelInput.placeholder =
+                "Twitchチャンネル名";
+
+            channelInput.value = runner.channel;
+
+            channelInput.addEventListener(
+                "input",
+                event => {
+
+                    runner.channel =
+                        event.target.value;
+
+                }
+            );
+
+            const deleteButton =
+                document.createElement("button");
+
+            deleteButton.type = "button";
+            deleteButton.className =
+                "deleteRunnerButton";
+
+            deleteButton.textContent = "削除";
+
+            deleteButton.addEventListener(
+                "click",
+                () => removeRunner(index)
+            );
+
+            row.appendChild(radio);
+            row.appendChild(nameInput);
+            row.appendChild(channelInput);
+            row.appendChild(deleteButton);
+
+            runnerList.appendChild(row);
+
+        }
+    );
+
+}
+
+
+/* ========================================
+   走者追加
+======================================== */
+
+function addRunner() {
+
+    if (!currentEvent) {
+        return;
+    }
+
+    currentEvent.runners.push({
+        id: currentEvent.runners.length + 1,
+        name: "",
+        channel: ""
     });
 
-    const result = await response.json();
+    if (currentEvent.runners.length === 1) {
 
-    alert(result.status);
+        currentEvent.currentRunner = 0;
+
+    }
+
+    renderRunnerList();
+    updateCurrentDisplay();
+
+}
+
+
+/* ========================================
+   走者削除
+======================================== */
+
+function removeRunner(index) {
+
+    if (!currentEvent) {
+        return;
+    }
+
+    const runner =
+        currentEvent.runners[index];
+
+    const runnerName =
+        runner.name || `${index + 1}番目の走者`;
+
+    const confirmed = window.confirm(
+        `${runnerName}を削除しますか？`
+    );
+
+    if (!confirmed) {
+        return;
+    }
+
+    currentEvent.runners.splice(index, 1);
+
+    currentEvent.runners.forEach(
+        (item, itemIndex) => {
+
+            item.id = itemIndex + 1;
+
+        }
+    );
+
+    if (currentEvent.runners.length === 0) {
+
+        currentEvent.currentRunner = 0;
+
+    } else if (
+        currentEvent.currentRunner > index
+    ) {
+
+        currentEvent.currentRunner -= 1;
+
+    } else if (
+        currentEvent.currentRunner >=
+        currentEvent.runners.length
+    ) {
+
+        currentEvent.currentRunner =
+            currentEvent.runners.length - 1;
+
+    }
+
+    renderRunnerList();
+    updateCurrentDisplay();
+
+}
+
+
+/* ========================================
+   現在・次の走者表示
+======================================== */
+
+function updateCurrentDisplay() {
+
+    const currentName =
+        document.getElementById(
+            "currentRunnerName"
+        );
+
+    const nextName =
+        document.getElementById(
+            "nextRunnerName"
+        );
+
+    if (
+        !currentEvent ||
+        currentEvent.runners.length === 0
+    ) {
+
+        currentName.textContent = "-";
+        nextName.textContent = "-";
+
+        return;
+
+    }
+
+    const currentRunner =
+        currentEvent.runners[
+            currentEvent.currentRunner
+        ];
+
+    const nextRunner =
+        currentEvent.runners[
+            currentEvent.currentRunner + 1
+        ];
+
+    currentName.textContent =
+        currentRunner?.name.trim() ||
+        "未入力";
+
+    nextName.textContent =
+        nextRunner?.name.trim() ||
+        "最後の走者";
+
+}
+
+
+/* ========================================
+   保存
+======================================== */
+
+async function saveEvent() {
+
+    if (!currentEvent) {
+
+        showError(
+            new Error(
+                "保存するイベントがありません。"
+            )
+        );
+
+        return;
+
+    }
+
+    try {
+
+        const eventData =
+            collectAndValidateEvent();
+
+        const token =
+            getAdminToken();
+
+        if (!token) {
+            return;
+        }
+
+        setSavingState(true);
+
+        const response = await fetch(
+            `${API}/event`,
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type":
+                        "application/json",
+
+                    "X-Admin-Token":
+                        token
+                },
+
+                body: JSON.stringify(eventData)
+            }
+        );
+
+        const result =
+            await readApiResponse(response);
+
+        currentEvent =
+            normalizeEvent(result.event);
+
+        renderRunnerList();
+        updateCurrentDisplay();
+
+        showMessage(
+            result.message ||
+            "イベントを保存しました。"
+        );
+
+    } catch (error) {
+
+        if (error.status === 401) {
+
+            sessionStorage.removeItem(
+                ADMIN_TOKEN_KEY
+            );
+
+        }
+
+        showError(error);
+
+    } finally {
+
+        setSavingState(false);
+
+    }
+
+}
+
+
+/* ========================================
+   入力内容取得・検証
+======================================== */
+
+function collectAndValidateEvent() {
+
+    const runners =
+        currentEvent.runners.map(
+            (runner, index) => {
+
+                const name =
+                    runner.name.trim();
+
+                const channel =
+                    runner.channel
+                        .trim()
+                        .toLowerCase();
+
+                if (!name) {
+
+                    throw new Error(
+                        `${index + 1}番目の走者名を入力してください。`
+                    );
+
+                }
+
+                if (
+                    !/^[a-z0-9_]{1,25}$/i
+                        .test(channel)
+                ) {
+
+                    throw new Error(
+                        `${index + 1}番目のTwitchチャンネル名を確認してください。`
+                    );
+
+                }
+
+                return {
+                    id: index + 1,
+                    name,
+                    channel
+                };
+
+            }
+        );
+
+    if (runners.length === 0) {
+
+        throw new Error(
+            "走者を1人以上登録してください。"
+        );
+
+    }
+
+    if (
+        currentEvent.currentRunner < 0 ||
+        currentEvent.currentRunner >=
+            runners.length
+    ) {
+
+        throw new Error(
+            "現在の走者を選択してください。"
+        );
+
+    }
+
+    return {
+        eventId: currentEvent.eventId,
+        title: currentEvent.title,
+        description:
+            currentEvent.description || "",
+        startTime:
+            currentEvent.startTime || "",
+        currentRunner:
+            currentEvent.currentRunner,
+        runners
+    };
+
+}
+
+
+/* ========================================
+   管理トークン
+======================================== */
+
+function getAdminToken() {
+
+    const savedToken =
+        sessionStorage.getItem(
+            ADMIN_TOKEN_KEY
+        );
+
+    if (savedToken) {
+        return savedToken;
+    }
+
+    const token = window.prompt(
+        "管理用トークンを入力してください。"
+    );
+
+    if (!token) {
+        return null;
+    }
+
+    const normalizedToken =
+        token.trim();
+
+    if (!normalizedToken) {
+        return null;
+    }
+
+    sessionStorage.setItem(
+        ADMIN_TOKEN_KEY,
+        normalizedToken
+    );
+
+    return normalizedToken;
+
+}
+
+
+/* ========================================
+   APIレスポンス処理
+======================================== */
+
+async function readApiResponse(response) {
+
+    let data;
+
+    try {
+
+        data = await response.json();
+
+    } catch {
+
+        throw new Error(
+            `APIの応答を読み取れませんでした。HTTP ${response.status}`
+        );
+
+    }
+
+    if (!response.ok) {
+
+        const error = new Error(
+            data.message ||
+            `APIエラーが発生しました。HTTP ${response.status}`
+        );
+
+        error.status = response.status;
+
+        throw error;
+
+    }
+
+    return data;
+
+}
+
+
+/* ========================================
+   データ整形
+======================================== */
+
+function normalizeEvent(value) {
+
+    return {
+        eventId: value.eventId,
+        title: value.title,
+        description:
+            value.description || "",
+        startTime:
+            value.startTime || "",
+        currentRunner:
+            Number.isInteger(
+                value.currentRunner
+            )
+                ? value.currentRunner
+                : 0,
+
+        runners: Array.isArray(value.runners)
+            ? value.runners.map(
+                (runner, index) => ({
+                    id: index + 1,
+                    name: runner.name || "",
+                    channel:
+                        runner.channel || ""
+                })
+            )
+            : []
+    };
+
+}
+
+
+/* ========================================
+   画面通知
+======================================== */
+
+function setSavingState(isSaving) {
+
+    const button =
+        document.getElementById(
+            "saveButton"
+        );
+
+    button.disabled = isSaving;
+
+    button.textContent = isSaving
+        ? "保存中..."
+        : "💾 保存";
+
+}
+
+
+function showMessage(message) {
+
+    window.alert(message);
+
+}
+
+
+function showError(error) {
+
+    console.error(error);
+
+    window.alert(
+        error.message ||
+        "エラーが発生しました。"
+    );
 
 }
