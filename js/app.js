@@ -15,14 +15,25 @@ async function refresh() {
     // UI更新
     updateUI(data);
 
+    // 現在の走者を取得
+    const runners = Array.isArray(data.runners)
+        ? data.runners
+        : [];
+
+    const currentRunner =
+        runners[data.currentRunner] || null;
+
+    const channel =
+        currentRunner?.channel || "";
+
     // チャンネルが変わったらプレイヤー更新
-    if (currentChannel !== data.channel) {
+    if (currentChannel !== channel) {
 
         console.log(
-            `チャンネル変更：${currentChannel} → ${data.channel}`
+            `チャンネル変更：${currentChannel} → ${channel}`
         );
 
-        currentChannel = data.channel;
+        currentChannel = channel;
 
         createPlayer(currentChannel);
 
