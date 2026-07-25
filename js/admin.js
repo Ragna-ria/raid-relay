@@ -47,6 +47,20 @@ async function initialize() {
             saveEvent
         );
 
+    document
+    .getElementById("previousButton")
+    .addEventListener(
+        "click",
+        previousRunner
+    );
+
+    document
+    .getElementById("advanceButton")
+    .addEventListener(
+        "click",
+        advanceRunner
+    );
+
     try {
 
         await loadEvents();
