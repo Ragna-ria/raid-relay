@@ -3,7 +3,7 @@
   "title": "レイドでつなぐ生誕祭",
   "description": "ドラえもん生誕祭レイドリレー",
   "startTime": "",
-  "currentRunner": 1,
+  "currentRunner": 0,
   "runners": [
     {
       "id": 1,
@@ -21,10 +21,5 @@
       "channel": "ragna_ria"
     }
   ],
-  "eventSubState": {
-    "lastMessageId": "KX-soJRW7zS-5S9VYQlW_LSnB-2GPt6g-28ceIOJfwQ=",
-    "processedAt": "2026-07-27T23:35:57.196Z",
-    "fromChannel": "ragna_ria",
-    "toChannel": "nukomaro2020"
-  }
+  "eventSubState": null
 }
