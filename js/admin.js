@@ -48,6 +48,13 @@ async function initialize() {
         );
     
     document
+        .getElementById("scheduledEventButton")
+        .addEventListener(
+            "click",
+            scheduleEvent
+        );
+    
+    document
         .getElementById("endEventButton")
         .addEventListener(
             "click",
@@ -1244,6 +1251,54 @@ async function endEvent() {
 
         showMessage(
             "イベントを終了しました。"
+        );
+
+    } catch (error) {
+
+        currentEvent.status =
+            "live";
+
+        showError(error);
+
+    }
+
+}
+
+/* ========================================
+   開始前に戻す
+======================================== */
+
+async function scheduleEvent() {
+
+    if (!currentEvent) {
+
+        showError(
+            new Error(
+                "イベントが選択されていません。"
+            )
+        );
+
+        return;
+
+    }
+
+    if (
+        !confirm(
+            "イベントを開始前に戻しますか？"
+        )
+    ) {
+        return;
+    }
+
+    try {
+
+        currentEvent.status =
+            "scheduled";
+
+        await saveEvent();
+
+        showMessage(
+            "イベントを開始前に戻しました。"
         );
 
     } catch (error) {
