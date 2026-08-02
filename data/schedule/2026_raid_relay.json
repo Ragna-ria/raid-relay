@@ -3,7 +3,7 @@
   "title": "レイドでつなぐ生誕祭",
   "description": "ドラえもん生誕祭レイドリレー",
   "startTime": "",
-  "currentRunner": 1,
+  "currentRunner": 2,
   "runners": [
     {
       "id": 1,
@@ -32,9 +32,9 @@
     }
   ],
   "eventSubState": {
-    "lastMessageId": "54cgTsct6CR4JwvDD24fsQ2rE-Z64yoqBjawbtWmxXI=",
-    "processedAt": "2026-08-02T12:58:10.829Z",
-    "fromChannel": "ragna_ria",
-    "toChannel": "hinome_no_taruman"
+    "lastMessageId": "vevQA-6DjX28-ZXK2CJWAsqI2KMzbzz0ZsVs-BIvACQ=",
+    "processedAt": "2026-08-02T13:00:28.494Z",
+    "fromChannel": "hinome_no_taruman",
+    "toChannel": "ragna_ria"
   }
 }
