@@ -37,3 +37,47 @@ function updateUI(data) {
         `${currentNumber} / ${total}`;
 
 }
+
+function showEventMessage(message) {
+
+    const eventMessage =
+        document.getElementById(
+            "eventMessage"
+        );
+
+    const liveContent =
+        document.getElementById(
+            "liveContent"
+        );
+
+    eventMessage.textContent =
+        message;
+
+    eventMessage.hidden =
+        false;
+
+    liveContent.hidden =
+        true;
+
+}
+
+
+function showLiveScreen() {
+
+    const eventMessage =
+        document.getElementById(
+            "eventMessage"
+        );
+
+    const liveContent =
+        document.getElementById(
+            "liveContent"
+        );
+
+    eventMessage.hidden =
+        true;
+
+    liveContent.hidden =
+        false;
+
+}
