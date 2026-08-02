@@ -91,3 +91,42 @@ function createPlayer(channel) {
     );
 
 }
+
+function destroyPlayer() {
+
+    const playerArea =
+        document.getElementById(
+            "playerArea"
+        );
+
+    if (player) {
+
+        try {
+
+            player.pause();
+
+        } catch (error) {
+
+            console.warn(
+                "プレイヤー停止に失敗しました。",
+                error
+            );
+
+        }
+
+    }
+
+    if (playerArea) {
+
+        playerArea.innerHTML =
+            "";
+
+    }
+
+    player =
+        null;
+
+    currentPlayerChannel =
+        null;
+
+}
