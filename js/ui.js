@@ -63,3 +63,24 @@ function showEventMessage(
         true;
 
 }
+
+
+function showLiveScreen() {
+
+    const eventMessage =
+        document.getElementById(
+            "eventMessage"
+        );
+
+    const liveContent =
+        document.getElementById(
+            "liveContent"
+        );
+
+    eventMessage.hidden =
+        true;
+
+    liveContent.hidden =
+        false;
+
+}
