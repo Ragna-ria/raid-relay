@@ -183,6 +183,8 @@ async function loadEvent(eventId) {
     renderRunnerList();
     updateCurrentDisplay();
 
+    await loadEventSubStatus();
+
 }
 
 
