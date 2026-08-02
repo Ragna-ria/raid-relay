@@ -322,3 +322,7 @@ body {
     white-space: pre-line;
 
 }
+
+.event-message[hidden] {
+    display: none;
+}
