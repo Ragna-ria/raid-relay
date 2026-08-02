@@ -303,3 +303,22 @@ body {
     }
 
 }
+
+.event-message {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 450px;
+
+    font-size: 42px;
+    font-weight: bold;
+
+    color: #1976d2;
+
+    text-align: center;
+
+    white-space: pre-line;
+
+}
