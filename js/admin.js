@@ -1168,7 +1168,7 @@ async function syncEventSub() {
             resolve =>
                 setTimeout(
                     resolve,
-                    1000
+                    2500
                 )
         );
 
