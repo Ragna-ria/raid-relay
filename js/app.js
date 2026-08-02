@@ -32,6 +32,7 @@ async function refresh() {
 
         showEventMessage(
             "イベント開始前です"
+            data.startTime
         );
 
         currentChannel = "";
