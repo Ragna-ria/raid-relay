@@ -613,6 +613,8 @@ function collectAndValidateEvent() {
     return {
         eventId: currentEvent.eventId,
         title: currentEvent.title,
+        status:
+            currentEvent.status || "live",
         description:
             currentEvent.description || "",
         startTime:
@@ -712,6 +714,10 @@ function normalizeEvent(value) {
     return {
         eventId: value.eventId,
         title: value.title,
+        status:
+            typeof value.status === "string"
+            ? value.status
+            : "live",
         description:
             value.description || "",
         startTime:
