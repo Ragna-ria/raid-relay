@@ -42,10 +42,10 @@ async function refresh() {
     }
 
 
-    if (data.ended === "ended") {
+    if (data.status === "ended") {
 
         showEventMessage(
-            "イベントは終了しました"
+            "イベントは終了しました\n\nTHANK YOU FOR JOINING!\n\nご参加・ご視聴\nありがとうございました！"
         );
 
         currentChannel = "";
