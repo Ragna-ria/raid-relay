@@ -1292,6 +1292,32 @@ async function scheduleEvent() {
 
     try {
 
+        /*
+        最新のイベントデータを取得して、
+        startTimeなどを古い値で上書きしないようにします。
+        */
+
+        const latestResponse =
+            await fetch(
+                `${API}/event?id=${encodeURIComponent(
+                    currentEvent.eventId
+                )}&t=${Date.now()}`,
+                {
+                    cache:
+                        "no-store"
+                }
+            );
+
+        const latestEvent =
+            await readApiResponse(
+                latestResponse
+            );
+
+        currentEvent =
+            normalizeEvent(
+                latestEvent
+            );
+
         currentEvent.status =
             "scheduled";
 
@@ -1302,9 +1328,6 @@ async function scheduleEvent() {
         );
 
     } catch (error) {
-
-        currentEvent.status =
-            "live";
 
         showError(error);
 
