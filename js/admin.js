@@ -1292,36 +1292,9 @@ async function scheduleEvent() {
 
     try {
 
-        /*
-        最新のイベントデータを取得して、
-        startTimeなどを古い値で上書きしないようにします。
-        */
-
-        const latestResponse =
-            await fetch(
-                `${API}/event?id=${encodeURIComponent(
-                    currentEvent.eventId
-                )}&t=${Date.now()}`,
-                {
-                    cache:
-                        "no-store"
-                }
-            );
-
-        const latestEvent =
-            await readApiResponse(
-                latestResponse
-            );
-
-        currentEvent =
-            normalizeEvent(
-                latestEvent
-            );
-
-        currentEvent.status =
-            "scheduled";
-
-        await saveEvent();
+        await changeEventStatus(
+            "scheduled"
+        );
 
         showMessage(
             "イベントを開始前に戻しました。"
@@ -1329,8 +1302,82 @@ async function scheduleEvent() {
 
     } catch (error) {
 
+        if (error.status === 401) {
+
+            sessionStorage.removeItem(
+                ADMIN_TOKEN_KEY
+            );
+
+        }
+
         showError(error);
 
     }
+
+}
+
+/* ========================================
+   イベント状態変更
+======================================== */
+
+async function changeEventStatus(
+    nextStatus
+) {
+
+    if (!currentEvent) {
+
+        throw new Error(
+            "イベントが選択されていません。"
+        );
+
+    }
+
+    const token =
+        getAdminToken();
+
+    if (!token) {
+        return null;
+    }
+
+    const response =
+        await fetch(
+            `${API}/event/status`,
+            {
+                method:
+                    "POST",
+
+                headers: {
+                    "Content-Type":
+                        "application/json",
+
+                    "X-Admin-Token":
+                        token
+                },
+
+                body:
+                    JSON.stringify({
+                        eventId:
+                            currentEvent.eventId,
+
+                        status:
+                            nextStatus
+                    })
+            }
+        );
+
+    const result =
+        await readApiResponse(
+            response
+        );
+
+    currentEvent =
+        normalizeEvent(
+            result.event
+        );
+
+    renderRunnerList();
+    updateCurrentDisplay();
+
+    return result;
 
 }
