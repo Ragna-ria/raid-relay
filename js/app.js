@@ -35,6 +35,8 @@ async function refresh() {
             data.startTime
         );
 
+        destroyPlayer();
+
         currentChannel = "";
 
         return;
@@ -47,6 +49,8 @@ async function refresh() {
         showEventMessage(
             "イベントは終了しました\n\nTHANK YOU FOR JOINING!\n\nご参加・ご視聴\nありがとうございました！"
         );
+
+        destroyPlayer();
 
         currentChannel = "";
 
