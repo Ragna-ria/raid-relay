@@ -42,7 +42,7 @@ async function refresh() {
     }
 
 
-    if (data.ended === true) {
+    if (data.ended === "ended") {
 
         showEventMessage(
             "イベントは終了しました"
