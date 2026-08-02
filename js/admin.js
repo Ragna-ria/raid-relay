@@ -509,6 +509,8 @@ async function saveEvent() {
         renderRunnerList();
         updateCurrentDisplay();
 
+        await loadEventSubStatus();
+
         showMessage(
             result.message ||
             "イベントを保存しました。"
@@ -841,6 +843,8 @@ async function moveRunner(action) {
         renderRunnerList();
         updateCurrentDisplay();
 
+        await loadEventSubStatus();
+
         showMessage(
             result.message || "更新しました。"
         );
@@ -931,6 +935,12 @@ async function loadEventSubStatus() {
         subscriptionStatus.textContent =
             "-";
 
+        syncStatus.className =
+            "";
+
+        subscriptionStatus.className =
+            "";
+
         const response =
             await fetch(
                 `${API}/eventsub/status?id=${encodeURIComponent(
@@ -963,12 +973,34 @@ async function loadEventSubStatus() {
 
         syncStatus.textContent =
             result.synchronized
-                ? "正常"
-                : "未同期";
+            ? "🟢 正常"
+            : "🟡 未同期";
 
-        subscriptionStatus.textContent =
+        syncStatus.className =
+            result.synchronized
+            ? "statusOk"
+            : "statusWarning";
+
+
+        const subscriptionState =
             subscription?.status ||
             "購読なし";
+
+        subscriptionStatus.textContent =
+            subscriptionState === "enabled"
+            ? "🟢 enabled"
+            : subscriptionState ===
+            "webhook_callback_verification_pending"
+            ? "🟡 確認待ち"
+            : "🔴 " + subscriptionState;
+
+        subscriptionStatus.className =
+            subscriptionState === "enabled"
+            ? "statusOk"
+            : subscriptionState ===
+            "webhook_callback_verification_pending"
+            ? "statusWarning"
+            : "statusError";
 
         currentRunner.textContent =
             result.currentRunner?.name ||
@@ -999,10 +1031,16 @@ async function loadEventSubStatus() {
         }
 
         syncStatus.textContent =
-            "エラー";
+            "🔴 エラー";
+
+        syncStatus.className =
+            "statusError";
 
         subscriptionStatus.textContent =
             "-";
+
+        subscriptionStatus.className =
+            "";
 
         currentRunner.textContent =
             "-";
