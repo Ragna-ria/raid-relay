@@ -61,6 +61,13 @@ async function initialize() {
         advanceRunner
     );
 
+    document
+    .getElementById("eventSubStatusButton")
+    .addEventListener(
+        "click",
+        loadEventSubStatus
+    );
+
     try {
 
         await loadEvents();
@@ -845,6 +852,178 @@ async function moveRunner(action) {
         }
 
         showError(error);
+
+    }
+
+}
+
+
+/* ========================================
+   EventSub状態確認
+======================================== */
+
+async function loadEventSubStatus() {
+
+    if (!currentEvent) {
+
+        showError(
+            new Error(
+                "確認するイベントがありません。"
+            )
+        );
+
+        return;
+
+    }
+
+    const button =
+        document.getElementById(
+            "eventSubStatusButton"
+        );
+
+    const syncStatus =
+        document.getElementById(
+            "eventSubSyncStatus"
+        );
+
+    const subscriptionStatus =
+        document.getElementById(
+            "eventSubSubscriptionStatus"
+        );
+
+    const currentRunner =
+        document.getElementById(
+            "eventSubCurrentRunner"
+        );
+
+    const currentChannel =
+        document.getElementById(
+            "eventSubCurrentChannel"
+        );
+
+    const callback =
+        document.getElementById(
+            "eventSubCallback"
+        );
+
+    const checkedAt =
+        document.getElementById(
+            "eventSubCheckedAt"
+        );
+
+    const token =
+        getAdminToken();
+
+    if (!token) {
+        return;
+    }
+
+    try {
+
+        button.disabled = true;
+        button.textContent = "確認中...";
+
+        syncStatus.textContent =
+            "確認中";
+
+        subscriptionStatus.textContent =
+            "-";
+
+        const response =
+            await fetch(
+                `${API}/eventsub/status?id=${encodeURIComponent(
+                    currentEvent.eventId
+                )}&t=${Date.now()}`,
+                {
+                    method: "GET",
+
+                    headers: {
+                        "X-Admin-Token":
+                            token
+                    },
+
+                    cache:
+                        "no-store"
+                }
+            );
+
+        const result =
+            await readApiResponse(
+                response
+            );
+
+        const subscription =
+            Array.isArray(
+                result.subscriptions
+            )
+                ? result.subscriptions[0]
+                : null;
+
+        syncStatus.textContent =
+            result.synchronized
+                ? "正常"
+                : "未同期";
+
+        subscriptionStatus.textContent =
+            subscription?.status ||
+            "購読なし";
+
+        currentRunner.textContent =
+            result.currentRunner?.name ||
+            "-";
+
+        currentChannel.textContent =
+            result.currentRunner?.channel ||
+            "-";
+
+        callback.textContent =
+            result.callback ||
+            "-";
+
+        checkedAt.textContent =
+            new Date()
+                .toLocaleTimeString(
+                    "ja-JP"
+                );
+
+    } catch (error) {
+
+        if (error.status === 401) {
+
+            sessionStorage.removeItem(
+                ADMIN_TOKEN_KEY
+            );
+
+        }
+
+        syncStatus.textContent =
+            "エラー";
+
+        subscriptionStatus.textContent =
+            "-";
+
+        currentRunner.textContent =
+            "-";
+
+        currentChannel.textContent =
+            "-";
+
+        callback.textContent =
+            "-";
+
+        checkedAt.textContent =
+            new Date()
+                .toLocaleTimeString(
+                    "ja-JP"
+                );
+
+        showError(error);
+
+    } finally {
+
+        button.disabled = false;
+        button.textContent =
+            "🔄 状態確認";
 
     }
 
