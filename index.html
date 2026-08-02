@@ -20,49 +20,59 @@
             レイドでつなぐ生誕祭
         </h1>
 
-        <div class="live">
-            🔴 LIVE
+        <div
+            id="eventMessage"
+            class="event-message"
+            hidden
+        >
+            -
         </div>
 
-        <div class="current">
+        <div id="liveContent">
 
-            <span class="label">
-                NOW STREAMING ▶▶
-            </span>
+            <div class="live">
+                🔴 LIVE
+            </div>
 
-            <span
-                id="currentName"
-                class="current-name">
+            <div class="current">
 
-                読み込み中...
+                <span class="label">
+                    NOW STREAMING ▶▶
+                </span>
 
-            </span>
+                <span
+                    id="currentName"
+                    class="current-name"
+                >
+                    読み込み中...
+                </span>
 
-        </div>
+            </div>
 
-        <div id="playerArea"></div>
+            <div id="playerArea"></div>
 
-        <div class="next">
+            <div class="next">
 
-            <span class="label">
-                NEXT ▶▶
-            </span>
+                <span class="label">
+                    NEXT ▶▶
+                </span>
 
-            <span
-                id="nextName"
-                class="next-name">
+                <span
+                    id="nextName"
+                    class="next-name"
+                >
+                    未定
+                </span>
 
-                未定
+            </div>
 
-            </span>
+            <div class="progress">
 
-        </div>
+                <span id="progressText">
+                    -
+                </span>
 
-        <div class="progress">
-
-            <span id="progressText">
-                -
-            </span>
+            </div>
 
         </div>
 
