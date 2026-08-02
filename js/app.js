@@ -5,44 +5,104 @@ let currentChannel = "";
  */
 async function refresh() {
 
-    const data = await loadCurrent();
+    const data =
+        await loadCurrent();
 
-    // 読み込み失敗
     if (!data) {
         return;
     }
 
-    // UI更新
+    const startTime =
+        data.startTime
+            ? new Date(
+                data.startTime
+            )
+            : null;
+
+    const isBeforeStart =
+        startTime &&
+        !Number.isNaN(
+            startTime.getTime()
+        ) &&
+        Date.now() <
+        startTime.getTime();
+
+
+    if (isBeforeStart) {
+
+        showEventMessage(
+            "イベント開始前です"
+        );
+
+        currentChannel = "";
+
+        return;
+
+    }
+
+
+    if (data.ended === true) {
+
+        showEventMessage(
+            "イベントは終了しました"
+        );
+
+        currentChannel = "";
+
+        return;
+
+    }
+
+
+    showLiveScreen();
+
     updateUI(data);
 
-    // 現在の走者を取得
-    const runners = Array.isArray(data.runners)
-        ? data.runners
-        : [];
+
+    const runners =
+        Array.isArray(
+            data.runners
+        )
+            ? data.runners
+            : [];
 
     const currentRunner =
-        runners[data.currentRunner] || null;
+        runners[
+            data.currentRunner
+        ] || null;
 
     const channel =
-        currentRunner?.channel || "";
+        currentRunner?.channel ||
+        "";
 
-    // チャンネルが変わったらプレイヤー更新
-    if (currentChannel !== channel) {
+
+    if (
+        currentChannel !==
+        channel
+    ) {
 
         console.log(
             `チャンネル変更：${currentChannel} → ${channel}`
         );
 
-        currentChannel = channel;
+        currentChannel =
+            channel;
 
-        createPlayer(currentChannel);
+        createPlayer(
+            currentChannel
+        );
 
     }
 
 }
 
+
 // 初回実行
 refresh();
 
+
 // 5秒ごとに更新
-setInterval(refresh, 5000);
+setInterval(
+    refresh,
+    5000
+);
