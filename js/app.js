@@ -31,7 +31,7 @@ async function refresh() {
     if (isBeforeStart) {
 
         showEventMessage(
-            "イベント開始前です"
+            "イベント開始前です",
             data.startTime
         );
 
