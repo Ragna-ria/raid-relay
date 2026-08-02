@@ -49,7 +49,7 @@ function showEventMessage(
             ).format(date);
 
         text +=
-            `\n\n開始予定時刻\n${formatted}`;
+            `\n\nSTART\n${formatted}`;
 
     }
 
