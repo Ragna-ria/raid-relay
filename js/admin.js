@@ -68,6 +68,13 @@ async function initialize() {
         loadEventSubStatus
     );
 
+    document
+    .getElementById("eventSubSyncButton")
+    .addEventListener(
+        "click",
+        syncEventSub
+    );
+
     try {
 
         await loadEvents();
@@ -887,6 +894,11 @@ async function loadEventSubStatus() {
             "eventSubStatusButton"
         );
 
+    const syncButton =
+    document.getElementById(
+        "eventSubSyncButton"
+    );
+
     const syncStatus =
         document.getElementById(
             "eventSubSyncStatus"
@@ -988,6 +1000,10 @@ async function loadEventSubStatus() {
             ? "statusOk"
             : "statusWarning";
 
+        syncButton.className =
+            result.synchronized
+            ? ""
+            : "syncButtonWarning";
 
         const subscriptionState =
             subscription?.status ||
@@ -1040,6 +1056,9 @@ async function loadEventSubStatus() {
         syncStatus.textContent =
             "🔴 エラー";
 
+        syncButton.className =
+            "syncButtonError";
+
         syncStatus.className =
             "statusError";
 
@@ -1071,6 +1090,107 @@ async function loadEventSubStatus() {
         button.disabled = false;
         button.textContent =
             "🔄 状態確認";
+
+    }
+
+}
+
+/* ========================================
+   EventSub再同期
+======================================== */
+
+async function syncEventSub() {
+
+    if (!currentEvent) {
+
+        showError(
+            new Error(
+                "再同期するイベントがありません。"
+            )
+        );
+
+        return;
+
+    }
+
+    const token =
+        getAdminToken();
+
+    if (!token) {
+        return;
+    }
+
+    const button =
+        document.getElementById(
+            "eventSubSyncButton"
+        );
+
+    try {
+
+        button.disabled = true;
+        button.textContent =
+            "再同期中...";
+
+        const response =
+            await fetch(
+                `${API}/eventsub/sync`,
+                {
+                    method:
+                        "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json",
+
+                        "X-Admin-Token":
+                            token
+                    },
+
+                    body:
+                        JSON.stringify({
+                            eventId:
+                                currentEvent.eventId
+                        })
+                }
+            );
+
+        const result =
+            await readApiResponse(
+                response
+            );
+
+        showMessage(
+            result.message ||
+            "EventSubを再同期しました。"
+        );
+
+        await new Promise(
+            resolve =>
+                setTimeout(
+                    resolve,
+                    1000
+                )
+        );
+
+        await loadEventSubStatus();
+
+    } catch (error) {
+
+        if (error.status === 401) {
+
+            sessionStorage.removeItem(
+                ADMIN_TOKEN_KEY
+            );
+
+        }
+
+        showError(error);
+
+    } finally {
+
+        button.disabled = false;
+        button.textContent =
+            "🔁 再同期";
 
     }
 
