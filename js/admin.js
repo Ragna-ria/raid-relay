@@ -964,6 +964,13 @@ async function loadEventSubStatus() {
                 response
             );
 
+        console.log(
+            "EventSub status result:",
+            result,
+            result.synchronized,
+            typeof result.synchronized
+        );
+
         const subscription =
             Array.isArray(
                 result.subscriptions
