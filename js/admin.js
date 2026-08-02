@@ -1244,10 +1244,9 @@ async function endEvent() {
 
     try {
 
-        currentEvent.status =
-            "ended";
-
-        await saveEvent();
+        await changeEventStatus(
+            "ended"
+        );
 
         showMessage(
             "イベントを終了しました。"
@@ -1255,8 +1254,13 @@ async function endEvent() {
 
     } catch (error) {
 
-        currentEvent.status =
-            "live";
+        if (error.status === 401) {
+
+            sessionStorage.removeItem(
+                ADMIN_TOKEN_KEY
+            );
+
+        }
 
         showError(error);
 
