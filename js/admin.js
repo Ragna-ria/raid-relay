@@ -46,6 +46,13 @@ async function initialize() {
             "click",
             saveEvent
         );
+    
+    document
+        .getElementById("endEventButton")
+        .addEventListener(
+            "click",
+            endEvent
+        );
 
     document
     .getElementById("previousButton")
@@ -1197,6 +1204,54 @@ async function syncEventSub() {
         button.disabled = false;
         button.textContent =
             "🔁 再同期";
+
+    }
+
+}
+
+/* ========================================
+   イベント終了
+======================================== */
+
+async function endEvent() {
+
+    if (!currentEvent) {
+
+        showError(
+            new Error(
+                "イベントが選択されていません。"
+            )
+        );
+
+        return;
+
+    }
+
+    if (
+        !confirm(
+            "イベントを終了しますか？"
+        )
+    ) {
+        return;
+    }
+
+    try {
+
+        currentEvent.status =
+            "ended";
+
+        await saveEvent();
+
+        showMessage(
+            "イベントを終了しました。"
+        );
+
+    } catch (error) {
+
+        currentEvent.status =
+            "live";
+
+        showError(error);
 
     }
 
