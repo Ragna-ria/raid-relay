@@ -27,7 +27,21 @@ async function refresh() {
         Date.now() <
         startTime.getTime();
 
+    
+    if (data.status === "ended") {
+        
+        destroyPlayer();
 
+        showEventMessage(    
+            "イベントは終了しました"
+        );
+
+        currentChannel = "";
+
+        return;
+
+    }
+    
     if (isBeforeStart) {
 
         destroyPlayer();
@@ -41,21 +55,6 @@ async function refresh() {
         currentChannel = "";
 
         return;        
-
-    }
-
-
-    if (data.status === "ended") {
-        
-        destroyPlayer();
-
-        showEventMessage(    
-            "イベントは終了しました"
-        );
-
-        currentChannel = "";
-
-        return;
 
     }
 
