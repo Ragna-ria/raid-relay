@@ -30,27 +30,28 @@ async function refresh() {
 
     if (isBeforeStart) {
 
-        showEventMessage(
-            "イベント開始前です",
-            data.startTime
-        );
-
         destroyPlayer();
+
+        showEventMessage(
+            "イベント開始前です", 
+            data.startTime
+
+        );
 
         currentChannel = "";
 
-        return;
+        return;        
 
     }
 
 
     if (data.status === "ended") {
-
-        showEventMessage(
-            "イベントは終了しました\n\nTHANK YOU FOR JOINING!\n\nご参加・ご視聴\nありがとうございました！"
-        );
-
+        
         destroyPlayer();
+
+        showEventMessage(    
+            "イベントは終了しました"
+        );
 
         currentChannel = "";
 
