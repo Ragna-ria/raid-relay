@@ -11,21 +11,14 @@ Theme Color : #69e0ff
 =========================== */
 
 body {
-
     margin: 0;
-
     background: #f4fcff;
-
     font-family: "Noto Sans JP", sans-serif;
-
 }
 
 .container {
-
     width: min(1000px, 95%);
-
     margin: 35px auto;
-
 }
 
 /* ===========================
@@ -33,17 +26,11 @@ body {
 =========================== */
 
 .title {
-
     text-align: center;
-
     color: #0b84d8;
-
     font-size: 40px;
-
     font-weight: 900;
-
     margin: 0 0 30px;
-
 }
 
 /* ===========================
@@ -51,43 +38,28 @@ body {
 =========================== */
 
 .live {
-
     display: flex;
-
     align-items: center;
-
     gap: 8px;
-
     color: #e40000;
-
     font-size: 24px;
-
     font-weight: 900;
-
     margin-bottom: 12px;
-
 }
 
 .live-dot {
-
     animation: blink 1s infinite;
-
 }
 
 @keyframes blink {
-
-    0%,100% {
-
+    0%,
+    100% {
         opacity: 1;
-
     }
 
     50% {
-
-        opacity: .2;
-
+        opacity: 0.2;
     }
-
 }
 
 /* ===========================
@@ -95,41 +67,25 @@ body {
 =========================== */
 
 .current {
-
     display: flex;
-
     align-items: baseline;
-
     gap: 14px;
-
     margin-bottom: 20px;
-
 }
 
 .current .label {
-
     color: #69e0ff;
-
     font-size: 26px;
-
     font-weight: 900;
-
     white-space: nowrap;
-
     flex-shrink: 0;
-
 }
 
 .current-name {
-
     color: #0b56d8;
-
     font-size: 32px;
-
     font-weight: 900;
-
     white-space: nowrap;
-
 }
 
 /* ===========================
@@ -137,39 +93,71 @@ body {
 =========================== */
 
 #playerArea {
-
     width: 100%;
-
     aspect-ratio: 16 / 9;
-
     background: #000;
-
     border: 5px solid #69e0ff;
-
     border-radius: 18px;
-
     overflow: hidden;
-
+    box-sizing: border-box;
 }
 
 #twitch-player {
-
     width: 100%;
-
     height: 100%;
-
 }
 
 #twitch-player iframe {
-
     width: 100%;
-
     height: 100%;
-
     display: block;
-
     border: none;
+}
 
+/* ===========================
+   開始前・終了後メッセージ
+=========================== */
+
+.player-message {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 30px;
+    background: #000;
+    color: #fff;
+    text-align: center;
+}
+
+.player-message-main {
+    font-size: 42px;
+    font-weight: 900;
+    line-height: 1.4;
+}
+
+.player-message-label {
+    margin-top: 42px;
+    font-size: 52px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+}
+
+.player-message-time {
+    margin-top: 22px;
+    font-size: 42px;
+    font-weight: 900;
+    line-height: 1.3;
+}
+
+.player-message-sub {
+    margin-top: 35px;
+    font-size: 32px;
+    font-weight: 900;
+    line-height: 1.6;
 }
 
 /* ===========================
@@ -177,41 +165,25 @@ body {
 =========================== */
 
 .next {
-
     display: flex;
-
     justify-content: flex-end;
-
     align-items: baseline;
-
     gap: 14px;
-
     margin-top: 18px;
-
 }
 
 .next .label {
-
     color: #69e0ff;
-
     font-size: 22px;
-
     font-weight: 900;
-
     white-space: nowrap;
-
 }
 
 .next-name {
-
     color: #0b56d8;
-
     font-size: 24px;
-
     font-weight: 900;
-
     white-space: nowrap;
-
 }
 
 /* ===========================
@@ -219,15 +191,18 @@ body {
 =========================== */
 
 .progress {
-
     text-align: right;
-
     margin-top: 8px;
-
     color: #888;
-
     font-size: 15px;
+}
 
+/* ===========================
+   hidden属性の強制適用
+=========================== */
+
+[hidden] {
+    display: none !important;
 }
 
 /* ===========================
@@ -237,139 +212,68 @@ body {
 @media (max-width: 768px) {
 
     .container {
-
         width: 95%;
-
         margin: 20px auto;
-
     }
 
     .title {
-
         font-size: 30px;
-
     }
 
     .live {
-
         font-size: 20px;
-
     }
 
     .current {
-
         flex-wrap: wrap;
-
         gap: 8px;
-
     }
 
     .current .label {
-
         font-size: 20px;
-
     }
 
     .current-name {
-
         font-size: 26px;
+    }
 
+    .player-message {
+        padding: 18px;
+    }
+
+    .player-message-main {
+        font-size: 28px;
+    }
+
+    .player-message-label {
+        margin-top: 24px;
+        font-size: 36px;
+    }
+
+    .player-message-time {
+        margin-top: 14px;
+        font-size: 28px;
+    }
+
+    .player-message-sub {
+        margin-top: 22px;
+        font-size: 22px;
     }
 
     .next {
-
         justify-content: flex-end;
-
         gap: 8px;
-
     }
 
     .next .label {
-
         font-size: 18px;
-
     }
 
     .next-name {
-
         font-size: 20px;
-
     }
 
     .progress {
-
         font-size: 13px;
-
     }
-
-}
-
-.event-message {
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    min-height: 450px;
-
-    font-size: 42px;
-    font-weight: bold;
-
-    color: #1976d2;
-
-    text-align: center;
-
-    white-space: pre-line;
-
-}
-
-.event-message[hidden] {
-    display: none;
-}
-
-.player-message {
-    width: 100%;
-    height: 100%;
-    min-height: 500px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    box-sizing: border-box;
-
-    background: #000000;
-    color: #ffffff;
-
-    text-align: center;
-}
-
-.player-message-main {
-    font-size: 42px;
-    font-weight: bold;
-    line-height: 1.4;
-}
-
-.player-message-label {
-    margin-top: 42px;
-
-    font-size: 52px;
-    font-weight: bold;
-    letter-spacing: 0.08em;
-}
-
-.player-message-time {
-    margin-top: 22px;
-
-    font-size: 42px;
-    font-weight: bold;
-}
-
-.player-message-sub {
-    margin-top: 35px;
-
-    font-size: 32px;
-    font-weight: bold;
-    line-height: 1.6;
 }
