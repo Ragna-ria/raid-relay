@@ -10,6 +10,96 @@
       "id": 1,
       "name": "らぐな_",
       "channel": "ragna_ria"
+    },
+    {
+      "id": 2,
+      "name": "とんかつ隊長",
+      "channel": "commander_tnkt"
+    },
+    {
+      "id": 3,
+      "name": "さぼP",
+      "channel": "sabo_p"
+    },
+    {
+      "id": 4,
+      "name": "ふらん",
+      "channel": "franmrm"
+    },
+    {
+      "id": 5,
+      "name": "？？？",
+      "channel": "twitch"
+    },
+    {
+      "id": 6,
+      "name": "？？？",
+      "channel": "twitch"
+    },
+    {
+      "id": 7,
+      "name": "coco_yuri",
+      "channel": "coco_yuri"
+    },
+    {
+      "id": 8,
+      "name": "ねる",
+      "channel": "nell052"
+    },
+    {
+      "id": 9,
+      "name": "？？？",
+      "channel": "twitch"
+    },
+    {
+      "id": 10,
+      "name": "？？？",
+      "channel": "twitch"
+    },
+    {
+      "id": 11,
+      "name": "吉田杏仁",
+      "channel": "yoshidaannin"
+    },
+    {
+      "id": 12,
+      "name": "ほとの。",
+      "channel": "hotoono"
+    },
+    {
+      "id": 13,
+      "name": "数のコウダイ",
+      "channel": "kazunoko_koudai"
+    },
+    {
+      "id": 14,
+      "name": "かくすく",
+      "channel": "kakusuku23"
+    },
+    {
+      "id": 15,
+      "name": "あずまよる",
+      "channel": "bonkotu25"
+    },
+    {
+      "id": 16,
+      "name": "りコりス",
+      "channel": "lyc0ris7777"
+    },
+    {
+      "id": 17,
+      "name": "きゅうり",
+      "channel": "cucumber_peer"
+    },
+    {
+      "id": 18,
+      "name": "ねむすぎ",
+      "channel": "nemusg"
+    },
+    {
+      "id": 19,
+      "name": "らぐな_",
+      "channel": "ragna_ria"
     }
   ],
   "eventSubState": null
