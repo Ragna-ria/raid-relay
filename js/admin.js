@@ -25,6 +25,21 @@ window.addEventListener(
     initialize
 );
 
+window.addEventListener(
+    "beforeunload",
+    event => {
+
+        if (!hasUnsavedChanges) {
+            return;
+        }
+
+        event.preventDefault();
+
+        event.returnValue = "";
+
+    }
+);
+
 
 async function initialize() {
 
@@ -779,6 +794,8 @@ async function saveEvent() {
         renderRunnerList();
         updateCurrentDisplay();
 
+        clearUnsavedChanges();
+
         await loadEventSubStatus();
 
         showMessage(
@@ -1215,6 +1232,8 @@ async function moveRunner(action) {
 
         renderRunnerList();
         updateCurrentDisplay();
+
+        clearUnsavedChanges();
 
         await loadEventSubStatus();
 
