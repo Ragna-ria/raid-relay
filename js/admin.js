@@ -301,6 +301,7 @@ function renderRunnerList() {
                     currentEvent.currentRunner =
                         index;
 
+                    renderRunnerList();
                     updateCurrentDisplay();
 
                 }
