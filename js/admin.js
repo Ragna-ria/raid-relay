@@ -254,6 +254,17 @@ function renderRunnerList() {
             row.className =
                 "runnerRow";
 
+            if (
+                currentEvent.currentRunner ===
+                index
+            ) {
+
+                row.classList.add(
+                    "currentRunnerRow"
+                );
+
+            }
+
             const numberLabel =
                 document.createElement(
                     "span"
