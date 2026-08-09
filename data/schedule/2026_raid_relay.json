@@ -4,17 +4,17 @@
   "status": "scheduled",
   "description": "ドラえもん生誕祭レイドリレー",
   "startTime": "2026-09-05T00:00:00+09:00",
-  "currentRunner": 0,
+  "currentRunner": 1,
   "runners": [
     {
       "id": 1,
-      "name": "らぐな_",
-      "channel": "ragna_ria"
+      "name": "とんかつ隊長",
+      "channel": "commander_tnkt"
     },
     {
       "id": 2,
-      "name": "とんかつ隊長",
-      "channel": "commander_tnkt"
+      "name": "らぐな_",
+      "channel": "ragna_ria"
     },
     {
       "id": 3,
