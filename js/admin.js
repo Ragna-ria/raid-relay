@@ -439,7 +439,7 @@ function renderRunnerList() {
                 "deleteRunnerButton";
 
             deleteButton.textContent =
-                "削除";
+                "🗑️";
 
             deleteButton.addEventListener(
                 "click",
