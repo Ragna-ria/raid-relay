@@ -117,3 +117,8 @@ button:hover{
     opacity: 0.3;
     cursor: default;
 }
+
+.currentRunnerRow {
+    background: #e8f8ff;
+    border-color: #69e0ff;
+}
