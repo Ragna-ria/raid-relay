@@ -13,6 +13,8 @@ const ADMIN_TOKEN_KEY =
 
 let currentEvent = null;
 
+let hasUnsavedChanges = false;
+
 
 /* ========================================
    初期処理
@@ -330,6 +332,8 @@ function renderRunnerList() {
 
                     runner.name =
                         event.target.value;
+
+                    markUnsavedChanges();
 
                     updateCurrentDisplay();
 
@@ -1066,6 +1070,56 @@ function showError(error) {
     window.alert(
         error.message ||
         "エラーが発生しました。"
+    );
+
+}
+
+
+/* ========================================
+   未保存状態
+======================================== */
+
+function markUnsavedChanges() {
+
+    hasUnsavedChanges = true;
+
+    const button =
+        document.getElementById(
+            "saveButton"
+        );
+
+    if (!button) {
+        return;
+    }
+
+    button.textContent =
+        "💾 変更を保存";
+
+    button.classList.add(
+        "unsavedButton"
+    );
+
+}
+
+
+function clearUnsavedChanges() {
+
+    hasUnsavedChanges = false;
+
+    const button =
+        document.getElementById(
+            "saveButton"
+        );
+
+    if (!button) {
+        return;
+    }
+
+    button.textContent =
+        "💾 保存";
+
+    button.classList.remove(
+        "unsavedButton"
     );
 
 }
