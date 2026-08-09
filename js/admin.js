@@ -303,6 +303,8 @@ function renderRunnerList() {
                     currentEvent.currentRunner =
                         index;
 
+                    markUnsavedChanges();
+
                     renderRunnerList();
                     updateCurrentDisplay();
 
@@ -363,6 +365,8 @@ function renderRunnerList() {
 
                     runner.channel =
                         event.target.value;
+
+                    markUnsavedChanges();
 
                 }
             );
@@ -553,6 +557,8 @@ function moveRunnerOrder(
 
     }
 
+    markUnsavedChanges();
+
     renderRunnerList();
     updateCurrentDisplay();
 
@@ -579,6 +585,8 @@ function addRunner() {
         currentEvent.currentRunner = 0;
 
     }
+
+    markUnsavedChanges();
 
     renderRunnerList();
     updateCurrentDisplay();
@@ -647,6 +655,8 @@ function removeRunner(index) {
             currentEvent.runners.length - 1;
 
     }
+
+    markUnsavedChanges();
 
     renderRunnerList();
     updateCurrentDisplay();
