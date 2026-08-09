@@ -362,6 +362,15 @@ function renderRunnerList() {
             upButton.disabled =
                 index === 0;
 
+            upButton.addEventListener(
+                "click",
+                () =>
+                    moveRunnerOrder(
+                        index,
+                        index - 1
+                    )
+            );
+
 
             /* ===========================
                下へ移動ボタン
@@ -384,6 +393,15 @@ function renderRunnerList() {
             downButton.disabled =
                 index ===
                 currentEvent.runners.length - 1;
+
+            downButton.addEventListener(
+                "click",
+                () =>
+                    moveRunnerOrder(
+                        index,
+                        index + 1
+                    )
+            );
 
 
             const deleteButton =
@@ -436,6 +454,76 @@ function renderRunnerList() {
 
         }
     );
+
+}
+
+/* ========================================
+   走者順番変更
+======================================== */
+
+function moveRunnerOrder(
+    fromIndex,
+    toIndex
+) {
+
+    if (!currentEvent) {
+        return;
+    }
+
+    const runners =
+        currentEvent.runners;
+
+    if (
+        fromIndex < 0 ||
+        fromIndex >= runners.length ||
+        toIndex < 0 ||
+        toIndex >= runners.length
+    ) {
+        return;
+    }
+
+    const currentRunnerObject =
+        runners[
+            currentEvent.currentRunner
+        ];
+
+    const movedRunner =
+        runners.splice(
+            fromIndex,
+            1
+        )[0];
+
+    runners.splice(
+        toIndex,
+        0,
+        movedRunner
+    );
+
+    runners.forEach(
+        (runner, index) => {
+
+            runner.id =
+                index + 1;
+
+        }
+    );
+
+    const newCurrentIndex =
+        runners.indexOf(
+            currentRunnerObject
+        );
+
+    if (
+        newCurrentIndex !== -1
+    ) {
+
+        currentEvent.currentRunner =
+            newCurrentIndex;
+
+    }
+
+    renderRunnerList();
+    updateCurrentDisplay();
 
 }
 
