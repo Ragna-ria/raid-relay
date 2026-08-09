@@ -254,6 +254,17 @@ function renderRunnerList() {
             row.className =
                 "runnerRow";
 
+            const numberLabel =
+                document.createElement(
+                    "span"
+                );
+
+            numberLabel.className =
+                "runnerNumber";
+
+            numberLabel.textContent =
+                `${index + 1}.`;
+
             const radio =
                 document.createElement(
                     "input"
@@ -424,6 +435,10 @@ function renderRunnerList() {
                     removeRunner(index)
             );
 
+            row.appendChild(
+                numberLabel
+            );
+            
             row.appendChild(
                 radio
             );
