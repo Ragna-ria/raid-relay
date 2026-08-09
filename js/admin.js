@@ -62,32 +62,32 @@ async function initialize() {
         );
 
     document
-    .getElementById("previousButton")
-    .addEventListener(
-        "click",
-        previousRunner
-    );
+        .getElementById("previousButton")
+        .addEventListener(
+            "click",
+            previousRunner
+        );
 
     document
-    .getElementById("advanceButton")
-    .addEventListener(
-        "click",
-        advanceRunner
-    );
+        .getElementById("advanceButton")
+        .addEventListener(
+            "click",
+            advanceRunner
+        );
 
     document
-    .getElementById("eventSubStatusButton")
-    .addEventListener(
-        "click",
-        loadEventSubStatus
-    );
+        .getElementById("eventSubStatusButton")
+        .addEventListener(
+            "click",
+            loadEventSubStatus
+        );
 
     document
-    .getElementById("eventSubSyncButton")
-    .addEventListener(
-        "click",
-        syncEventSub
-    );
+        .getElementById("eventSubSyncButton")
+        .addEventListener(
+            "click",
+            syncEventSub
+        );
 
     try {
 
@@ -195,11 +195,13 @@ async function loadEvent(eventId) {
     const eventData =
         await readApiResponse(response);
 
-    currentEvent = normalizeEvent(eventData);
+    currentEvent =
+        normalizeEvent(eventData);
 
     document.getElementById(
         "eventTitle"
-    ).textContent = currentEvent.title;
+    ).textContent =
+        currentEvent.title;
 
     renderRunnerList();
     updateCurrentDisplay();
@@ -216,7 +218,9 @@ async function loadEvent(eventId) {
 function renderRunnerList() {
 
     const runnerList =
-        document.getElementById("runnerList");
+        document.getElementById(
+            "runnerList"
+        );
 
     runnerList.innerHTML = "";
 
@@ -231,7 +235,9 @@ function renderRunnerList() {
         emptyMessage.textContent =
             "走者が登録されていません。";
 
-        runnerList.appendChild(emptyMessage);
+        runnerList.appendChild(
+            emptyMessage
+        );
 
         return;
 
@@ -241,18 +247,30 @@ function renderRunnerList() {
         (runner, index) => {
 
             const row =
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
 
-            row.className = "runnerRow";
+            row.className =
+                "runnerRow";
 
             const radio =
-                document.createElement("input");
+                document.createElement(
+                    "input"
+                );
 
-            radio.type = "radio";
-            radio.name = "currentRunner";
-            radio.value = String(index);
+            radio.type =
+                "radio";
+
+            radio.name =
+                "currentRunner";
+
+            radio.value =
+                String(index);
+
             radio.checked =
-                currentEvent.currentRunner === index;
+                currentEvent.currentRunner ===
+                index;
 
             radio.addEventListener(
                 "change",
@@ -267,12 +285,21 @@ function renderRunnerList() {
             );
 
             const nameInput =
-                document.createElement("input");
+                document.createElement(
+                    "input"
+                );
 
-            nameInput.type = "text";
-            nameInput.className = "runnerName";
-            nameInput.placeholder = "表示名";
-            nameInput.value = runner.name;
+            nameInput.type =
+                "text";
+
+            nameInput.className =
+                "runnerName";
+
+            nameInput.placeholder =
+                "表示名";
+
+            nameInput.value =
+                runner.name;
 
             nameInput.addEventListener(
                 "input",
@@ -287,16 +314,21 @@ function renderRunnerList() {
             );
 
             const channelInput =
-                document.createElement("input");
+                document.createElement(
+                    "input"
+                );
 
-            channelInput.type = "text";
+            channelInput.type =
+                "text";
+
             channelInput.className =
                 "runnerChannel";
 
             channelInput.placeholder =
                 "Twitchチャンネル名";
 
-            channelInput.value = runner.channel;
+            channelInput.value =
+                runner.channel;
 
             channelInput.addEventListener(
                 "input",
@@ -308,32 +340,104 @@ function renderRunnerList() {
                 }
             );
 
-            const deleteButton =
-                document.createElement("button");
 
-            deleteButton.type = "button";
+            /* ===========================
+               上へ移動ボタン
+            =========================== */
+
+            const upButton =
+                document.createElement(
+                    "button"
+                );
+
+            upButton.type =
+                "button";
+
+            upButton.className =
+                "moveRunnerButton";
+
+            upButton.textContent =
+                "⬆️";
+
+            upButton.disabled =
+                index === 0;
+
+
+            /* ===========================
+               下へ移動ボタン
+            =========================== */
+
+            const downButton =
+                document.createElement(
+                    "button"
+                );
+
+            downButton.type =
+                "button";
+
+            downButton.className =
+                "moveRunnerButton";
+
+            downButton.textContent =
+                "⬇️";
+
+            downButton.disabled =
+                index ===
+                currentEvent.runners.length - 1;
+
+
+            const deleteButton =
+                document.createElement(
+                    "button"
+                );
+
+            deleteButton.type =
+                "button";
+
             deleteButton.className =
                 "deleteRunnerButton";
 
-            deleteButton.textContent = "削除";
+            deleteButton.textContent =
+                "削除";
 
             deleteButton.addEventListener(
                 "click",
-                () => removeRunner(index)
+                () =>
+                    removeRunner(index)
             );
 
-            row.appendChild(radio);
-            row.appendChild(nameInput);
-            row.appendChild(channelInput);
-            row.appendChild(deleteButton);
+            row.appendChild(
+                radio
+            );
 
-            runnerList.appendChild(row);
+            row.appendChild(
+                nameInput
+            );
+
+            row.appendChild(
+                channelInput
+            );
+
+            row.appendChild(
+                upButton
+            );
+
+            row.appendChild(
+                downButton
+            );
+
+            row.appendChild(
+                deleteButton
+            );
+
+            runnerList.appendChild(
+                row
+            );
 
         }
     );
 
 }
-
 
 /* ========================================
    走者追加
@@ -377,27 +481,35 @@ function removeRunner(index) {
         currentEvent.runners[index];
 
     const runnerName =
-        runner.name || `${index + 1}番目の走者`;
+        runner.name ||
+        `${index + 1}番目の走者`;
 
-    const confirmed = window.confirm(
-        `${runnerName}を削除しますか？`
-    );
+    const confirmed =
+        window.confirm(
+            `${runnerName}を削除しますか？`
+        );
 
     if (!confirmed) {
         return;
     }
 
-    currentEvent.runners.splice(index, 1);
+    currentEvent.runners.splice(
+        index,
+        1
+    );
 
     currentEvent.runners.forEach(
         (item, itemIndex) => {
 
-            item.id = itemIndex + 1;
+            item.id =
+                itemIndex + 1;
 
         }
     );
 
-    if (currentEvent.runners.length === 0) {
+    if (
+        currentEvent.runners.length === 0
+    ) {
 
         currentEvent.currentRunner = 0;
 
@@ -504,28 +616,36 @@ async function saveEvent() {
 
         setSavingState(true);
 
-        const response = await fetch(
-            `${API}/event`,
-            {
-                method: "POST",
+        const response =
+            await fetch(
+                `${API}/event`,
+                {
+                    method: "POST",
 
-                headers: {
-                    "Content-Type":
-                        "application/json",
+                    headers: {
+                        "Content-Type":
+                            "application/json",
 
-                    "X-Admin-Token":
-                        token
-                },
+                        "X-Admin-Token":
+                            token
+                    },
 
-                body: JSON.stringify(eventData)
-            }
-        );
+                    body:
+                        JSON.stringify(
+                            eventData
+                        )
+                }
+            );
 
         const result =
-            await readApiResponse(response);
+            await readApiResponse(
+                response
+            );
 
         currentEvent =
-            normalizeEvent(result.event);
+            normalizeEvent(
+                result.event
+            );
 
         renderRunnerList();
         updateCurrentDisplay();
@@ -625,21 +745,31 @@ function collectAndValidateEvent() {
     }
 
     return {
-        eventId: currentEvent.eventId,
-        title: currentEvent.title,
+        eventId:
+            currentEvent.eventId,
+
+        title:
+            currentEvent.title,
+
         status:
-            currentEvent.status || "live",
+            currentEvent.status ||
+            "live",
+
         description:
-            currentEvent.description || "",
+            currentEvent.description ||
+            "",
+
         startTime:
-            currentEvent.startTime || "",
+            currentEvent.startTime ||
+            "",
+
         currentRunner:
             currentEvent.currentRunner,
+
         runners
     };
 
 }
-
 
 /* ========================================
    管理トークン
@@ -656,9 +786,10 @@ function getAdminToken() {
         return savedToken;
     }
 
-    const token = window.prompt(
-        "管理用トークンを入力してください。"
-    );
+    const token =
+        window.prompt(
+            "管理用トークンを入力してください。"
+        );
 
     if (!token) {
         return null;
@@ -685,13 +816,16 @@ function getAdminToken() {
    APIレスポンス処理
 ======================================== */
 
-async function readApiResponse(response) {
+async function readApiResponse(
+    response
+) {
 
     let data;
 
     try {
 
-        data = await response.json();
+        data =
+            await response.json();
 
     } catch {
 
@@ -703,12 +837,14 @@ async function readApiResponse(response) {
 
     if (!response.ok) {
 
-        const error = new Error(
-            data.message ||
-            `APIエラーが発生しました。HTTP ${response.status}`
-        );
+        const error =
+            new Error(
+                data.message ||
+                `APIエラーが発生しました。HTTP ${response.status}`
+            );
 
-        error.status = response.status;
+        error.status =
+            response.status;
 
         throw error;
 
@@ -726,16 +862,26 @@ async function readApiResponse(response) {
 function normalizeEvent(value) {
 
     return {
-        eventId: value.eventId,
-        title: value.title,
+        eventId:
+            value.eventId,
+
+        title:
+            value.title,
+
         status:
-            typeof value.status === "string"
-            ? value.status
-            : "live",
+            typeof value.status ===
+                "string"
+                ? value.status
+                : "live",
+
         description:
-            value.description || "",
+            value.description ||
+            "",
+
         startTime:
-            value.startTime || "",
+            value.startTime ||
+            "",
+
         currentRunner:
             Number.isInteger(
                 value.currentRunner
@@ -743,16 +889,25 @@ function normalizeEvent(value) {
                 ? value.currentRunner
                 : 0,
 
-        runners: Array.isArray(value.runners)
-            ? value.runners.map(
-                (runner, index) => ({
-                    id: index + 1,
-                    name: runner.name || "",
-                    channel:
-                        runner.channel || ""
-                })
+        runners:
+            Array.isArray(
+                value.runners
             )
-            : []
+                ? value.runners.map(
+                    (runner, index) => ({
+                        id:
+                            index + 1,
+
+                        name:
+                            runner.name ||
+                            "",
+
+                        channel:
+                            runner.channel ||
+                            ""
+                    })
+                )
+                : []
     };
 
 }
@@ -762,18 +917,22 @@ function normalizeEvent(value) {
    画面通知
 ======================================== */
 
-function setSavingState(isSaving) {
+function setSavingState(
+    isSaving
+) {
 
     const button =
         document.getElementById(
             "saveButton"
         );
 
-    button.disabled = isSaving;
+    button.disabled =
+        isSaving;
 
-    button.textContent = isSaving
-        ? "保存中..."
-        : "💾 保存";
+    button.textContent =
+        isSaving
+            ? "保存中..."
+            : "💾 保存";
 
 }
 
@@ -796,25 +955,17 @@ function showError(error) {
 
 }
 
-function showError(error) {
-
-    console.error(error);
-
-    window.alert(
-        error.message ||
-        "エラーが発生しました。"
-    );
-
-}
-
-// ←ここから追加
 
 /* ========================================
    次へ
 ======================================== */
 
 async function advanceRunner() {
-    await moveRunner("advance");
+
+    await moveRunner(
+        "advance"
+    );
+
 }
 
 
@@ -823,7 +974,11 @@ async function advanceRunner() {
 ======================================== */
 
 async function previousRunner() {
-    await moveRunner("previous");
+
+    await moveRunner(
+        "previous"
+    );
+
 }
 
 
@@ -839,33 +994,45 @@ async function moveRunner(action) {
 
     try {
 
-        const token = getAdminToken();
+        const token =
+            getAdminToken();
 
         if (!token) {
             return;
         }
 
-        const response = await fetch(
-            `${API}/${action}`,
-            {
-                method: "POST",
+        const response =
+            await fetch(
+                `${API}/${action}`,
+                {
+                    method:
+                        "POST",
 
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-Admin-Token": token
-                },
+                    headers: {
+                        "Content-Type":
+                            "application/json",
 
-                body: JSON.stringify({
-                    eventId: currentEvent.eventId
-                })
-            }
-        );
+                        "X-Admin-Token":
+                            token
+                    },
+
+                    body:
+                        JSON.stringify({
+                            eventId:
+                                currentEvent.eventId
+                        })
+                }
+            );
 
         const result =
-            await readApiResponse(response);
+            await readApiResponse(
+                response
+            );
 
         currentEvent =
-            normalizeEvent(result.event);
+            normalizeEvent(
+                result.event
+            );
 
         renderRunnerList();
         updateCurrentDisplay();
@@ -873,15 +1040,20 @@ async function moveRunner(action) {
         await loadEventSubStatus();
 
         showMessage(
-            result.message || "更新しました。"
+            result.message ||
+            "更新しました。"
         );
 
     } catch (error) {
 
-        if (error.status === 401) {
+        if (
+            error.status === 401
+        ) {
+
             sessionStorage.removeItem(
                 ADMIN_TOKEN_KEY
             );
+
         }
 
         showError(error);
@@ -889,7 +1061,6 @@ async function moveRunner(action) {
     }
 
 }
-
 
 /* ========================================
    EventSub状態確認
@@ -915,9 +1086,9 @@ async function loadEventSubStatus() {
         );
 
     const syncButton =
-    document.getElementById(
-        "eventSubSyncButton"
-    );
+        document.getElementById(
+            "eventSubSyncButton"
+        );
 
     const syncStatus =
         document.getElementById(
@@ -959,7 +1130,8 @@ async function loadEventSubStatus() {
     try {
 
         button.disabled = true;
-        button.textContent = "確認中...";
+        button.textContent =
+            "確認中...";
 
         syncStatus.textContent =
             "確認中";
@@ -979,7 +1151,8 @@ async function loadEventSubStatus() {
                     currentEvent.eventId
                 )}&t=${Date.now()}`,
                 {
-                    method: "GET",
+                    method:
+                        "GET",
 
                     headers: {
                         "X-Admin-Token":
@@ -1012,38 +1185,41 @@ async function loadEventSubStatus() {
 
         syncStatus.textContent =
             result.synchronized
-            ? "🟢 正常"
-            : "🟡 未同期";
+                ? "🟢 正常"
+                : "🟡 未同期";
 
         syncStatus.className =
             result.synchronized
-            ? "statusOk"
-            : "statusWarning";
+                ? "statusOk"
+                : "statusWarning";
 
         syncButton.className =
             result.synchronized
-            ? ""
-            : "syncButtonWarning";
+                ? ""
+                : "syncButtonWarning";
 
         const subscriptionState =
             subscription?.status ||
             "購読なし";
 
         subscriptionStatus.textContent =
-            subscriptionState === "enabled"
-            ? "🟢 enabled"
-            : subscriptionState ===
-            "webhook_callback_verification_pending"
-            ? "🟡 確認待ち"
-            : "🔴 " + subscriptionState;
+            subscriptionState ===
+                "enabled"
+                ? "🟢 enabled"
+                : subscriptionState ===
+                    "webhook_callback_verification_pending"
+                    ? "🟡 確認待ち"
+                    : "🔴 " +
+                        subscriptionState;
 
         subscriptionStatus.className =
-            subscriptionState === "enabled"
-            ? "statusOk"
-            : subscriptionState ===
-            "webhook_callback_verification_pending"
-            ? "statusWarning"
-            : "statusError";
+            subscriptionState ===
+                "enabled"
+                ? "statusOk"
+                : subscriptionState ===
+                    "webhook_callback_verification_pending"
+                    ? "statusWarning"
+                    : "statusError";
 
         currentRunner.textContent =
             result.currentRunner?.name ||
@@ -1107,13 +1283,16 @@ async function loadEventSubStatus() {
 
     } finally {
 
-        button.disabled = false;
+        button.disabled =
+            false;
+
         button.textContent =
             "🔄 状態確認";
 
     }
 
 }
+
 
 /* ========================================
    EventSub再同期
@@ -1147,7 +1326,9 @@ async function syncEventSub() {
 
     try {
 
-        button.disabled = true;
+        button.disabled =
+            true;
+
         button.textContent =
             "再同期中...";
 
@@ -1208,7 +1389,9 @@ async function syncEventSub() {
 
     } finally {
 
-        button.disabled = false;
+        button.disabled =
+            false;
+
         button.textContent =
             "🔁 再同期";
 
@@ -1268,6 +1451,7 @@ async function endEvent() {
 
 }
 
+
 /* ========================================
    開始前に戻す
 ======================================== */
@@ -1319,6 +1503,7 @@ async function scheduleEvent() {
     }
 
 }
+
 
 /* ========================================
    イベント状態変更
