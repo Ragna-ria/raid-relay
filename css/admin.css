@@ -295,3 +295,30 @@ button:hover {
 
     word-break: break-word;
 }
+
+
+/* ========================================
+   プレイヤープレビュー
+======================================== */
+
+.previewCard {
+    text-align: center;
+}
+
+.playerPreviewWrapper {
+    width: min(550px, 100%);
+
+    margin: 0 auto;
+}
+
+#playerPreview {
+    display: block;
+
+    width: 100%;
+    aspect-ratio: 16 / 9;
+
+    border: 1px solid #cbdde7;
+    border-radius: 10px;
+
+    background: #000000;
+}
