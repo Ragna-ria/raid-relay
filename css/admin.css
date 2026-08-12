@@ -301,20 +301,34 @@ button:hover {
 
 
 /* ========================================
-   プレイヤープレビュー
+   上部固定プレビューエリア
 ======================================== */
 
-.previewCard {
+.previewFixedArea {
     position: fixed;
 
-    top: 10px;
-    left: 50%;
-
-    transform: translateX(-50%);
+    top: 0;
+    left: 0;
+    right: 0;
 
     z-index: 1000;
 
-    width: min(590px, 95%);
+    padding: 10px 0 14px;
+
+    background: #f4f4f4;
+
+    border-bottom: 1px solid #d9d9d9;
+}
+
+
+/* ========================================
+   プレイヤープレビューカード
+======================================== */
+
+.previewCard {
+    width: min(620px, 95%);
+
+    margin: 0 auto;
 
     text-align: center;
 
@@ -324,6 +338,11 @@ button:hover {
         0 4px 12px
         rgba(0, 0, 0, 0.12);
 }
+
+
+/* ========================================
+   プレイヤープレビュー枠
+======================================== */
 
 .playerPreviewWrapper {
     width: min(550px, 100%);
@@ -338,6 +357,11 @@ button:hover {
 
     background: #ffffff;
 }
+
+
+/* ========================================
+   プレイヤープレビュー本体
+======================================== */
 
 #playerPreview {
     display: block;
