@@ -302,7 +302,17 @@ button:hover {
 ======================================== */
 
 .previewCard {
+    position: sticky;
+    top: 10px;
+    z-index: 100;
+
     text-align: center;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 4px 12px
+        rgba(0, 0, 0, 0.12);
 }
 
 .playerPreviewWrapper {
