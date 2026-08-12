@@ -29,7 +29,10 @@ body {
 
 .container {
     max-width: 900px;
+
     margin: auto;
+
+    padding-top: 380px;
 }
 
 
@@ -302,9 +305,16 @@ button:hover {
 ======================================== */
 
 .previewCard {
-    position: sticky;
+    position: fixed;
+
     top: 10px;
-    z-index: 100;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 1000;
+
+    width: min(590px, 95%);
 
     text-align: center;
 
