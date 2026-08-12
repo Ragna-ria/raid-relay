@@ -315,7 +315,7 @@ button:hover {
     display: block;
 
     width: 100%;
-    aspect-ratio: 16 / 9;
+    height: 450px;
 
     border: 1px solid #cbdde7;
     border-radius: 10px;
