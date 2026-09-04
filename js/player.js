@@ -125,6 +125,10 @@ function createPlayer(channel) {
         );
 
 
+    /* ========================================
+       プレイヤー準備完了
+    ======================================== */
+
     player.addEventListener(
         Twitch.Player.READY,
         function () {
@@ -132,6 +136,44 @@ function createPlayer(channel) {
             console.log(
                 `プレイヤー更新: ${normalizedChannel}`
             );
+
+
+            /* ミュートを明示 */
+
+            try {
+
+                player.setMuted(
+                    true
+                );
+
+            } catch (error) {
+
+                console.warn(
+                    "ミュート設定に失敗しました。",
+                    error
+                );
+
+            }
+
+
+            /* ミュート状態で再生開始 */
+
+            try {
+
+                player.play();
+
+                console.log(
+                    "ミュート状態で再生を開始します。"
+                );
+
+            } catch (error) {
+
+                console.warn(
+                    "自動再生に失敗しました。",
+                    error
+                );
+
+            }
 
         }
     );
