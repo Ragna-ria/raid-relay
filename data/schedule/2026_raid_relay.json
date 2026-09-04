@@ -4,7 +4,7 @@
   "status": "scheduled",
   "description": "ドラえもん生誕祭レイドリレー",
   "startTime": "2026-09-05T00:00:00+09:00",
-  "currentRunner": 1,
+  "currentRunner": 2,
   "runners": [
     {
       "id": 1,
@@ -92,5 +92,10 @@
       "channel": "ragna_ria"
     }
   ],
-  "eventSubState": null
+  "eventSubState": {
+    "lastMessageId": "G7KfyxDwCHnx_X4LAQIBODYPn3orIQ0ZDa5hlu5FGRI=",
+    "processedAt": "2026-09-04T17:00:46.715Z",
+    "fromChannel": "commander_tnkt",
+    "toChannel": "sabo_p"
+  }
 }
