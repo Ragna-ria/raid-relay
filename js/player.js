@@ -72,7 +72,7 @@ function createPlayer(channel) {
 
             parent: [
                 "ragna-ria.github.io"
-            ],
+            ]
 
             muted: true
         }
