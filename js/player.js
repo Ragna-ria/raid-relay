@@ -71,77 +71,6 @@ function createPlayer(channel) {
     }
 
 
-    /* ========================================
-       Twitch parent 設定
-    ======================================== */
-
-    const twitchParents = [];
-
-
-    /* 現在のページのドメイン */
-
-    if (
-        window.location.hostname
-    ) {
-
-        twitchParents.push(
-            window.location.hostname
-        );
-
-    }
-
-
-    /* iframe内の場合、親ページのドメインも取得 */
-
-    if (
-        window.top !== window.self
-    ) {
-
-        try {
-
-            const referrer =
-                document.referrer;
-
-            if (referrer) {
-
-                const referrerHost =
-                    new URL(
-                        referrer
-                    ).hostname;
-
-                if (
-                    referrerHost &&
-                    !twitchParents.includes(
-                        referrerHost
-                    )
-                ) {
-
-                    twitchParents.push(
-                        referrerHost
-                    );
-
-                }
-
-            }
-
-        } catch (error) {
-
-            console.warn(
-                "親ドメインの取得に失敗しました。",
-                error
-            );
-
-        }
-
-    }
-
-
-    console.log(
-        "Twitch parent:",
-        twitchParents
-    );
-
-
     /* 以前のプレイヤーを削除 */
 
     playerArea.innerHTML =
@@ -184,8 +113,10 @@ function createPlayer(channel) {
                 height:
                     "100%",
 
-                parent:
-                    twitchParents,
+                parent: [
+                    "ragna-ria.github.io",
+                    "sites.google.com"
+                ],
 
                 muted:
                     true
