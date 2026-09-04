@@ -1,6 +1,11 @@
 let player = null;
 let currentPlayerChannel = null;
 
+
+/* ========================================
+   Twitch Player 作成
+======================================== */
+
 function createPlayer(channel) {
 
     const normalizedChannel =
@@ -8,75 +13,184 @@ function createPlayer(channel) {
             ? channel.trim()
             : "";
 
-    // チャンネル名が空の場合
+
+    /* チャンネル名が空の場合 */
+
     if (!normalizedChannel) {
 
-        console.error("チャンネル名が指定されていません。");
+        console.error(
+            "チャンネル名が指定されていません。"
+        );
 
         const playerArea =
-            document.getElementById("playerArea");
+            document.getElementById(
+                "playerArea"
+            );
 
         if (playerArea) {
-            playerArea.innerHTML = "";
+
+            playerArea.innerHTML =
+                "";
+
         }
 
-        currentPlayerChannel = null;
+        currentPlayerChannel =
+            null;
 
         return;
+
     }
 
 
-    // 同じチャンネルなら作り直さない
+    /* 同じチャンネルなら作り直さない */
+
     if (
         player &&
-        currentPlayerChannel === normalizedChannel
+        currentPlayerChannel ===
+            normalizedChannel
     ) {
+
         return;
+
     }
 
 
     const playerArea =
-        document.getElementById("playerArea");
+        document.getElementById(
+            "playerArea"
+        );
 
     if (!playerArea) {
-        console.error("playerArea が見つかりません。");
+
+        console.error(
+            "playerArea が見つかりません。"
+        );
+
         return;
+
     }
 
 
-    // 以前のプレイヤーを削除
-    playerArea.innerHTML = "";
+    /* ========================================
+       Twitch parent 設定
+    ======================================== */
 
-    player = null;
-    currentPlayerChannel = normalizedChannel;
-
-
-    // 新しいプレイヤー用DIV
-    const playerDiv =
-        document.createElement("div");
-
-    playerDiv.id = "twitch-player";
-
-    playerArea.appendChild(playerDiv);
+    const twitchParents = [];
 
 
-    // Twitch Player生成
-    player = new Twitch.Player(
-        "twitch-player",
-        {
-            channel: normalizedChannel,
+    /* 現在のページのドメイン */
 
-            width: "100%",
+    if (
+        window.location.hostname
+    ) {
 
-            height: "100%",
+        twitchParents.push(
+            window.location.hostname
+        );
 
-            parent: [
-                "ragna-ria.github.io"
-            ],
+    }
 
-            muted: true
+
+    /* iframe内の場合、親ページのドメインも取得 */
+
+    if (
+        window.top !== window.self
+    ) {
+
+        try {
+
+            const referrer =
+                document.referrer;
+
+            if (referrer) {
+
+                const referrerHost =
+                    new URL(
+                        referrer
+                    ).hostname;
+
+                if (
+                    referrerHost &&
+                    !twitchParents.includes(
+                        referrerHost
+                    )
+                ) {
+
+                    twitchParents.push(
+                        referrerHost
+                    );
+
+                }
+
+            }
+
+        } catch (error) {
+
+            console.warn(
+                "親ドメインの取得に失敗しました。",
+                error
+            );
+
         }
+
+    }
+
+
+    console.log(
+        "Twitch parent:",
+        twitchParents
     );
+
+
+    /* 以前のプレイヤーを削除 */
+
+    playerArea.innerHTML =
+        "";
+
+    player =
+        null;
+
+    currentPlayerChannel =
+        normalizedChannel;
+
+
+    /* 新しいプレイヤー用DIV */
+
+    const playerDiv =
+        document.createElement(
+            "div"
+        );
+
+    playerDiv.id =
+        "twitch-player";
+
+    playerArea.appendChild(
+        playerDiv
+    );
+
+
+    /* Twitch Player生成 */
+
+    player =
+        new Twitch.Player(
+            "twitch-player",
+            {
+                channel:
+                    normalizedChannel,
+
+                width:
+                    "100%",
+
+                height:
+                    "100%",
+
+                parent:
+                    twitchParents,
+
+                muted:
+                    true
+            }
+        );
 
 
     player.addEventListener(
@@ -92,12 +206,18 @@ function createPlayer(channel) {
 
 }
 
+
+/* ========================================
+   Twitch Player 削除
+======================================== */
+
 function destroyPlayer() {
 
     const playerArea =
         document.getElementById(
             "playerArea"
         );
+
 
     if (player) {
 
@@ -116,12 +236,14 @@ function destroyPlayer() {
 
     }
 
+
     if (playerArea) {
 
         playerArea.innerHTML =
             "";
 
     }
+
 
     player =
         null;
