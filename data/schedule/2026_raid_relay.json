@@ -4,7 +4,7 @@
   "status": "scheduled",
   "description": "ドラえもん生誕祭レイドリレー",
   "startTime": "2026-09-05T00:00:00+09:00",
-  "currentRunner": 1,
+  "currentRunner": 0,
   "runners": [
     {
       "id": 1,
@@ -43,54 +43,54 @@
     },
     {
       "id": 8,
+      "name": "皆月みもら",
+      "channel": "mimora_6"
+    },
+    {
+      "id": 9,
       "name": "吉田杏仁",
       "channel": "yoshidaannin"
     },
     {
-      "id": 9,
+      "id": 10,
       "name": "ほとの。",
       "channel": "hotoono"
     },
     {
-      "id": 10,
+      "id": 11,
       "name": "数のコウダイ",
       "channel": "kazunoko_koudai"
     },
     {
-      "id": 11,
+      "id": 12,
       "name": "かくすく",
       "channel": "kakusuku23"
     },
     {
-      "id": 12,
+      "id": 13,
       "name": "あずまよる",
       "channel": "bonkotu25"
     },
     {
-      "id": 13,
+      "id": 14,
       "name": "りコりス",
       "channel": "lyc0ris7777"
     },
     {
-      "id": 14,
+      "id": 15,
       "name": "きゅうり",
       "channel": "cucumber_peer"
     },
     {
-      "id": 15,
+      "id": 16,
       "name": "ねむすぎ",
       "channel": "nemusg"
     },
     {
-      "id": 16,
+      "id": 17,
       "name": "らぐな_",
       "channel": "ragna_ria"
     }
   ],
-  "eventSubState": {
-    "lastMessageId": "OlHrcCGla6OSsflAYiVbjfLoMJv6AUu5Qq1kqfXI14Y=",
-    "processedAt": "2026-09-04T15:30:25.658Z",
-    "fromChannel": "ragna_ria",
-    "toChannel": "commander_tnkt"
-  }
+  "eventSubState": null
 }
