@@ -115,6 +115,7 @@ function createPlayer(channel) {
 
                 parent: [
                     "ragna-ria.github.io",
+                    "www.gstatic.com",
                     "sites.google.com"
                 ],
 
