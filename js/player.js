@@ -119,6 +119,9 @@ function createPlayer(channel) {
                     "sites.google.com"
                 ],
 
+                autoplay:
+                    true,
+
                 muted:
                     true
             }
