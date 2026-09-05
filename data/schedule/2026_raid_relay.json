@@ -4,7 +4,7 @@
   "status": "scheduled",
   "description": "ドラえもん生誕祭レイドリレー",
   "startTime": "2026-09-05T00:00:00+09:00",
-  "currentRunner": 8,
+  "currentRunner": 9,
   "runners": [
     {
       "id": 1,
@@ -93,9 +93,9 @@
     }
   ],
   "eventSubState": {
-    "lastMessageId": "h8hnmJAug_MPOGgBExbJyBbJNBzssUgvDq_FpnBVUs0=",
-    "processedAt": "2026-09-05T01:01:42.204Z",
-    "fromChannel": "mimora_6",
-    "toChannel": "yoshidaannin"
+    "lastMessageId": "CZbhBW-2Y03Q-G4VgoP6VuDAe9pi-5DWv1MGyuui3gY=",
+    "processedAt": "2026-09-05T02:36:55.665Z",
+    "fromChannel": "yoshidaannin",
+    "toChannel": "hotoono"
   }
 }
